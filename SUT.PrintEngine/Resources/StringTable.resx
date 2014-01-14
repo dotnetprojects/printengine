@@ -1,0 +1,972 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ChangeSlideComboTitle" xml:space="preserve">
+    <value>Change Slide</value>
+  </data>
+  <data name="CorporateTaxHeader" xml:space="preserve">
+    <value>Corporate tax rate: </value>
+  </data>
+  <data name="CorporateTaxSubHeader" xml:space="preserve">
+    <value>Click the Find Corporate Rates button and choose entities to view their rates.</value>
+  </data>
+  <data name="RepositoryHeader" xml:space="preserve">
+    <value>Repository</value>
+  </data>
+  <data name="RepositorySubHeader" xml:space="preserve">
+    <value>Create, delete and modify your attachments.</value>
+  </data>
+  <data name="SearchOptionCollapsedButtonCaption" xml:space="preserve">
+    <value>Show search option</value>
+  </data>
+  <data name="SearchOptionExpandedButtonCaption" xml:space="preserve">
+    <value>Hide search option</value>
+  </data>
+  <data name="SearchOptionExpanderHeader" xml:space="preserve">
+    <value>Search option</value>
+  </data>
+  <data name="SearchResultCollapsedButtonCaption" xml:space="preserve">
+    <value>Show search result</value>
+  </data>
+  <data name="SearchResultExpandedButtonCaption" xml:space="preserve">
+    <value>Hide search result</value>
+  </data>
+  <data name="SearchResultHeader" xml:space="preserve">
+    <value>Search result</value>
+  </data>
+  <data name="ArcToolTip" xml:space="preserve">
+    <value>Arc</value>
+  </data>
+  <data name="ArrowToolTip" xml:space="preserve">
+    <value>Arrow</value>
+  </data>
+  <data name="BranchToolTip" xml:space="preserve">
+    <value>Branch or Individual</value>
+  </data>
+  <data name="CorporationToolTip" xml:space="preserve">
+    <value>Corporation</value>
+  </data>
+  <data name="CTBToolTip" xml:space="preserve">
+    <value>CTB</value>
+  </data>
+  <data name="DisregardedToolTip" xml:space="preserve">
+    <value>Disregarded</value>
+  </data>
+  <data name="EllipseToolTip" xml:space="preserve">
+    <value>Ellipse</value>
+  </data>
+  <data name="LineToolTip" xml:space="preserve">
+    <value>Line</value>
+  </data>
+  <data name="NavigationToolTip" xml:space="preserve">
+    <value>Navigation</value>
+  </data>
+  <data name="ShowHidePTToolTip" xml:space="preserve">
+    <value>Show/Hide Payment Transactions</value>
+  </data>
+  <data name="NoteToolTip" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="PartnershipToolTip" xml:space="preserve">
+    <value>Partnership or Trust</value>
+  </data>
+  <data name="PenToolTip" xml:space="preserve">
+    <value>Pen</value>
+  </data>
+  <data name="PolygonToolTip" xml:space="preserve">
+    <value>Polygon</value>
+  </data>
+  <data name="RCTBToolTip" xml:space="preserve">
+    <value>RCTB</value>
+  </data>
+  <data name="RectangleToolTip" xml:space="preserve">
+    <value>Rectangle</value>
+  </data>
+  <data name="SmoothPolygonToolTip" xml:space="preserve">
+    <value>Smooth Polygon</value>
+  </data>
+  <data name="ThirdPartyToolTip" xml:space="preserve">
+    <value>Third Party</value>
+  </data>
+  <data name="LegendToolTip" xml:space="preserve">
+    <value>Legend</value>
+  </data>
+  <data name="AlignBottomToolTip" xml:space="preserve">
+    <value>Align Bottom</value>
+  </data>
+  <data name="AlignCenterTextPropertiesToolTip" xml:space="preserve">
+    <value>Align Center</value>
+  </data>
+  <data name="AlignCenterToolTip" xml:space="preserve">
+    <value>Align Center</value>
+  </data>
+  <data name="AlignLeftTextPropertiesToolTip" xml:space="preserve">
+    <value>Align Left</value>
+  </data>
+  <data name="AlignLeftToolTip" xml:space="preserve">
+    <value>Align Left</value>
+  </data>
+  <data name="AlignMiddleToolTip" xml:space="preserve">
+    <value>Align Middle</value>
+  </data>
+  <data name="AlignRightTextPropertiesToolTip" xml:space="preserve">
+    <value>Align Right</value>
+  </data>
+  <data name="AlignRightToolTip" xml:space="preserve">
+    <value>Align Right</value>
+  </data>
+  <data name="AlignTopToolTip" xml:space="preserve">
+    <value>Align Top</value>
+  </data>
+  <data name="AutoArrangeToolTip" xml:space="preserve">
+    <value>Auto Arrange On/Off</value>
+  </data>
+  <data name="BoldToolTip" xml:space="preserve">
+    <value>Bold</value>
+  </data>
+  <data name="BorderColorToolTip" xml:space="preserve">
+    <value>Border Color</value>
+  </data>
+  <data name="BulletsTextPropertiesToolTip" xml:space="preserve">
+    <value>Bullets</value>
+  </data>
+  <data name="CollapseToolTip" xml:space="preserve">
+    <value>Collapse</value>
+  </data>
+  <data name="FitEntitySizeLabel" xml:space="preserve">
+    <value>Fit Entity Size</value>
+  </data>
+  <data name="FitEntitySizeTooltip" xml:space="preserve">
+    <value>Fit Entity Size</value>
+  </data>
+  <data name="ColorPickerToolTip" xml:space="preserve">
+    <value>Color Picker</value>
+  </data>
+  <data name="ColorPropertiesToolTip" xml:space="preserve">
+    <value>Color Properties</value>
+  </data>
+  <data name="CopyToolTip" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="CutToolTip" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="DeleteToolTip" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="ExpandToolTip" xml:space="preserve">
+    <value>Expand</value>
+  </data>
+  <data name="FillColorToolTip" xml:space="preserve">
+    <value>Fill Color</value>
+  </data>
+  <data name="ItalicToolTip" xml:space="preserve">
+    <value>Italic</value>
+  </data>
+  <data name="LinePatternDashedToolTip" xml:space="preserve">
+    <value>Dashed</value>
+  </data>
+  <data name="LinePatternDashDotDotDot" xml:space="preserve">
+    <value>Dot Dash Dash</value>
+  </data>
+  <data name="LinePatternDashDotToolTip" xml:space="preserve">
+    <value>Dot Dash</value>
+  </data>
+  <data name="LinePatternDashDotDot" xml:space="preserve">
+    <value>Dot Dot Dash</value>
+  </data>
+  <data name="LinePatternDottedToolTip" xml:space="preserve">
+    <value>Dotted</value>
+  </data>
+  <data name="LinePatternSolidToolTip" xml:space="preserve">
+    <value>Solid</value>
+  </data>
+  <data name="LinePropertiesToolTip" xml:space="preserve">
+    <value>Line Properties</value>
+  </data>
+  <data name="LineWidth1ToolTip" xml:space="preserve">
+    <value>Width 1</value>
+  </data>
+  <data name="LineWidth2ToolTip" xml:space="preserve">
+    <value>Width 2</value>
+  </data>
+  <data name="LineWidth3ToolTip" xml:space="preserve">
+    <value>Width 3</value>
+  </data>
+  <data name="LineWidth4ToolTip" xml:space="preserve">
+    <value>Width 4</value>
+  </data>
+  <data name="LineWidth5ToolTip" xml:space="preserve">
+    <value>Width 5</value>
+  </data>
+  <data name="LineWidth6ToolTip" xml:space="preserve">
+    <value>Width 6</value>
+  </data>
+  <data name="MakeSameHeightToolTip" xml:space="preserve">
+    <value>Make Same Height</value>
+  </data>
+  <data name="MakeSameSizeBothToolTip" xml:space="preserve">
+    <value>Make Same Height-Width</value>
+  </data>
+  <data name="MakeSameWidthToolTip" xml:space="preserve">
+    <value>Make Same Width</value>
+  </data>
+  <data name="PasteToolTip" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="ResizeDecreaseSizeToolTip" xml:space="preserve">
+    <value>Decrease Size</value>
+  </data>
+  <data name="ResizeIncreaseSizeToolTip" xml:space="preserve">
+    <value>Increase Size</value>
+  </data>
+  <data name="SearchNextToolTip" xml:space="preserve">
+    <value>Search Next</value>
+  </data>
+  <data name="SearchPreviousToolTip" xml:space="preserve">
+    <value>Search Previous</value>
+  </data>
+  <data name="SearchToolTip" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SelectAllToolTip" xml:space="preserve">
+    <value>Select All</value>
+  </data>
+  <data name="TextPropertiesToolTip" xml:space="preserve">
+    <value>Text Properties</value>
+  </data>
+  <data name="UnderlinedToolTip" xml:space="preserve">
+    <value>Underlined</value>
+  </data>
+  <data name="ActiveSlideToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AlignResizeToolTip" xml:space="preserve">
+    <value>Align/Resize Properties</value>
+  </data>
+  <data name="ArrowHeadBothFillToolTip" xml:space="preserve">
+    <value>Both Filled</value>
+  </data>
+  <data name="ArrowHeadBothToolTip" xml:space="preserve">
+    <value>Both</value>
+  </data>
+  <data name="ArrowHeadLeftFillToolTip" xml:space="preserve">
+    <value>Left Filled</value>
+  </data>
+  <data name="ArrowHeadLeftToolTip" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="ArrowHeadNoneToolTip" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="ArrowHeadRightFillToolTip" xml:space="preserve">
+    <value>Right Filled</value>
+  </data>
+  <data name="ArrowHeadRightToolTip" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="BalloonTreeArcLayoutToolTip" xml:space="preserve">
+    <value>Balloon Tree Arc Layout</value>
+  </data>
+  <data name="BalloonTreeLayoutToolTip" xml:space="preserve">
+    <value>Balloon Tree Layout</value>
+  </data>
+  <data name="ChartControlToolTip" xml:space="preserve">
+    <value>Chart Options</value>
+  </data>
+  <data name="CompactTreeArcLayoutToolTip" xml:space="preserve">
+    <value>Compact Tree Arc Layout</value>
+  </data>
+  <data name="CompactTreeLayoutToolTip" xml:space="preserve">
+    <value>Compact Tree Layout</value>
+  </data>
+  <data name="CurrentLayoutToolTip" xml:space="preserve">
+    <value>Apply layout style for entire chart.</value>
+  </data>
+  <data name="FontSizeTextPropertiesToolTip" xml:space="preserve">
+    <value>Font Size</value>
+  </data>
+  <data name="FontStyleTextPropertiesToolTip" xml:space="preserve">
+    <value>Select Font</value>
+  </data>
+  <data name="HierarchicalArcLayoutToolTip" xml:space="preserve">
+    <value>Hierarchical Arc Layout</value>
+  </data>
+  <data name="HierarchicalLayoutToolTip" xml:space="preserve">
+    <value>Hierarchical Layout</value>
+  </data>
+  <data name="HorVertTreeArcLayoutToolTip" xml:space="preserve">
+    <value>HV Tree Arc Layout</value>
+  </data>
+  <data name="HorVertTreeLayoutToolTip" xml:space="preserve">
+    <value>HV Tree Layout</value>
+  </data>
+  <data name="InActiveSlideToolTip" xml:space="preserve">
+    <value>Double click to see the slide contents</value>
+  </data>
+  <data name="OrthogonalArcLayoutToolTip" xml:space="preserve">
+    <value>Orthogonal Arc Layout</value>
+  </data>
+  <data name="OrthogonalLayoutToolTip" xml:space="preserve">
+    <value>Orthogonal Layout</value>
+  </data>
+  <data name="SelectLayoutToolTip" xml:space="preserve">
+    <value>Select layout style for entire chart.</value>
+  </data>
+  <data name="TreeArcLayoutToolTip" xml:space="preserve">
+    <value>Tree Arc Layout</value>
+  </data>
+  <data name="TreeLayoutToolTip" xml:space="preserve">
+    <value>Tree Layout</value>
+  </data>
+  <data name="ZoomControlToolTip" xml:space="preserve">
+    <value>Zoom</value>
+  </data>
+  <data name="AddSlideToolTip" xml:space="preserve">
+    <value>Add Slide</value>
+  </data>
+  <data name="CompareReportToolTip" xml:space="preserve">
+    <value>Create report comparing multiple slides.</value>
+  </data>
+  <data name="RemoveSlideToolTip" xml:space="preserve">
+    <value>Remove Slide</value>
+  </data>
+  <data name="SlideLabelToolTip" xml:space="preserve">
+    <value>Click here to edit slide title.</value>
+  </data>
+  <data name="ArrowLineToolTip" xml:space="preserve">
+    <value>Arrow</value>
+  </data>
+  <data name="MagnifyToolTip" xml:space="preserve">
+    <value>Magnifier</value>
+  </data>
+  <data name="OwnershipToolTip" xml:space="preserve">
+    <value>{0} owns {1}% of {2}</value>
+    <comment>0=&gt; Parent Entity, 1=&gt;Percentage, 2=&gt; Child Entity</comment>
+  </data>
+  <data name="PTToolTip" xml:space="preserve">
+    <value>{0}: {1}, WHT: {2}</value>
+    <comment>0=&gt; Stream, 1=&gt;Amount, 2=&gt; Withholding Tax</comment>
+  </data>
+  <data name="AddPTTooltip" xml:space="preserve">
+    <value>Add Payment Transaction</value>
+  </data>
+  <data name="FullscreenModeOffTooltip" xml:space="preserve">
+    <value>Full-screen Off</value>
+  </data>
+  <data name="FullscreenModeOnTooltip" xml:space="preserve">
+    <value>Full-screen</value>
+  </data>
+  <data name="ConfigureEntityLabelToolTip" xml:space="preserve">
+    <value>Configure Entity Label</value>
+  </data>
+  <data name="WaitScreenMessage" xml:space="preserve">
+    <value>Please wait...</value>
+  </data>
+  <data name="TaskHeader" xml:space="preserve">
+    <value>Task Manager</value>
+  </data>
+  <data name="TaskSubHeader" xml:space="preserve">
+    <value>Create, delete and modify your tasks.</value>
+  </data>
+  <data name="CrossBorderTaxHeader" xml:space="preserve">
+    <value>Withholding tax rate: </value>
+  </data>
+  <data name="CrossBorderTaxSubHeader" xml:space="preserve">
+    <value>Click Find Withholding Rates button to choose paying entity, one or more receiving entity(ies) and payment stream for the withholding rates.</value>
+  </data>
+  <data name="SaveConfirmHeader" xml:space="preserve">
+    <value>Save project</value>
+  </data>
+  <data name="SaveConfirmMessage" xml:space="preserve">
+    <value>You have unsaved data, do you want to save project?</value>
+  </data>
+  <data name="AbortButtonCaption" xml:space="preserve">
+    <value>Abort</value>
+  </data>
+  <data name="CancelButtonCaption" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ApplyButtonCaption" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="ChangeButtonCaption" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="DoneButtonCaption" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="IgnoreButtonCaption" xml:space="preserve">
+    <value>Ignore</value>
+  </data>
+  <data name="NoButtonCaption" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="OkButtonCaption" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="RetryButtonCaption" xml:space="preserve">
+    <value>Retry</value>
+  </data>
+  <data name="YesButtonCaption" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="AntiAvoidanceDescription" xml:space="preserve">
+    <value>Find a summary of key anti-avoidance information of each country</value>
+  </data>
+  <data name="AntiAvoidanceHeader" xml:space="preserve">
+    <value>Anti-Avoidance</value>
+  </data>
+  <data name="SlideSelectorHeading" xml:space="preserve">
+    <value>Change Slide for All Tabs</value>
+  </data>
+  <data name="AntiAvoidancePrintSelectionHeader" xml:space="preserve">
+    <value>Select what you want to print</value>
+  </data>
+  <data name="RuleDetailsPrintRadioText" xml:space="preserve">
+    <value>Rule details</value>
+  </data>
+  <data name="RuleSummaryPrintRadioText" xml:space="preserve">
+    <value>Rule summaries</value>
+  </data>
+  <data name="PrintButtonCaption" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="PrintSelectionDialogTitle" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="ExportButtonCaption" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="ImportButtonCaption" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="ChangeSlideButtonCaption" xml:space="preserve">
+    <value>Change Slide</value>
+  </data>
+  <data name="OrCaption" xml:space="preserve">
+    <value>or</value>
+  </data>
+  <data name="CopyrightText" xml:space="preserve">
+    <value>Copyright © 2010 Orbitax. All right reserved.</value>
+  </data>
+  <data name="GetStartedButtonContent" xml:space="preserve">
+    <value>GET STARTED</value>
+  </data>
+  <data name="HomeEntityChart" xml:space="preserve">
+    <value>Entity Chart</value>
+  </data>
+  <data name="HomeEntityChartPara" xml:space="preserve">
+    <value>Visually build and maintain your entity chart. Create reports and presentations.</value>
+  </data>
+  <data name="HomeResearchandComplianceHeader" xml:space="preserve">
+    <value>Research and Compliance</value>
+  </data>
+  <data name="HomeWelComeHeader" xml:space="preserve">
+    <value>Welcome to Tax Management Expert</value>
+  </data>
+  <data name="HomeWelComePara" xml:space="preserve">
+    <value>Tax Management Expert (TME) is your one-stop shop for all your tax management needs. Please visit www.orbitax.com for information about other international tax products and services by Orbitax.</value>
+  </data>
+  <data name="ResizeExportedChartToFitSlide" xml:space="preserve">
+    <value>Resize chart to fit slide</value>
+  </data>
+  <data name="ExportJustCurrenteSlide" xml:space="preserve">
+    <value>Export just current slide</value>
+  </data>
+  <data name="ExportTo2003" xml:space="preserve">
+    <value>Office 2003</value>
+  </data>
+  <data name="ExportTo2007" xml:space="preserve">
+    <value>Office 2007</value>
+  </data>
+  <data name="ExportTitleCaption" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="CollapseError" xml:space="preserve">
+    <value>Collapse operation is not successful due to circular ownership</value>
+  </data>
+  <data name="CollapseErrorTitle" xml:space="preserve">
+    <value>Error in Collapse</value>
+  </data>
+  <data name="ChooseAnEntityCaption" xml:space="preserve">
+    <value>Choose an entity</value>
+  </data>
+  <data name="CorporateTaxNonSupportedMessage" xml:space="preserve">
+    <value>TME does not maintain income tax rates for individuals and unincorporated entities (a default rate equal to the rate that applies to corporations is assumed) and certain foreign countries (a default rate of 0% is assumed). Click here to edit this rate.</value>
+  </data>
+  <data name="CrossBorderTaxNonSuportedToolTip" xml:space="preserve">
+    <value>TME does not maintain withholding tax rates for transactions between domestic entities (a default rate of 0% is assumed), individuals and unincorporated entities (a default rate equal to the rate that applies to corporations is assumed) and certain foreign countries (a default rate of 0% is assumed). Click here to edit this rate.</value>
+  </data>
+  <data name="NonSuportedCountryToolTip" xml:space="preserve">
+    <value>This country's tax rates are not currently maintained in the TME database</value>
+  </data>
+  <data name="CustomColumnEmptyMessage" xml:space="preserve">
+    <value>Column name cannot be empty</value>
+  </data>
+  <data name="CustomColumnExistingMessage" xml:space="preserve">
+    <value>Same column name already exists</value>
+  </data>
+  <data name="AddSlideButtonCaption" xml:space="preserve">
+    <value>Add Slide</value>
+  </data>
+  <data name="CustomColumnWindowText" xml:space="preserve">
+    <value>Please select or type your custom column name</value>
+  </data>
+  <data name="CrossBorderTaxInputPanelText" xml:space="preserve">
+    <value>Choose The paying entity, one or more receiving countries, a payment stream, then click on the search button.</value>
+  </data>
+  <data name="WithHoldingRateDetailText" xml:space="preserve">
+    <value>Withholding tax rate details for {0} paying {1}</value>
+  </data>
+  <data name="ErrorToolTipTitle" xml:space="preserve">
+    <value>Validation Required</value>
+  </data>
+  <data name="NegativePercentageError" xml:space="preserve">
+    <value>Percentage cannot be negative</value>
+  </data>
+  <data name="OverflowPercentageError" xml:space="preserve">
+    <value>Percentage cannot be greater than 100</value>
+  </data>
+  <data name="SSTPrintHeader" xml:space="preserve">
+    <value>Entity Data</value>
+  </data>
+  <data name="PrintFooterText" xml:space="preserve">
+    <value>Report produced by Tax Management Expert (TME). www.orbitax.com</value>
+  </data>
+  <data name="CorpRatePrintHeader" xml:space="preserve">
+    <value>Corporate Tax Rate</value>
+  </data>
+  <data name="WithHoldingPrintHeader" xml:space="preserve">
+    <value>Withholding Tax Rate</value>
+  </data>
+  <data name="RepositoryPrintHeader" xml:space="preserve">
+    <value>Repository</value>
+  </data>
+  <data name="TaskManagerPrintHeader" xml:space="preserve">
+    <value>Task manager</value>
+  </data>
+  <data name="EntityNameErrorToolTip" xml:space="preserve">
+    <value>Name of an entity cannot be empty</value>
+  </data>
+  <data name="EntityShortNameErrorToolTip" xml:space="preserve">
+    <value>Short name of an entity cannot be empty</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Are you sure you want to delete?</value>
+  </data>
+  <data name="BranchMastHaveAParent" xml:space="preserve">
+    <value>Branch must have a parent</value>
+  </data>
+  <data name="CTBMastHaveAParent" xml:space="preserve">
+    <value>CTB must have a parent</value>
+  </data>
+  <data name="CompareSlideToolTip" xml:space="preserve">
+    <value>Compare Slides</value>
+  </data>
+  <data name="DisregardedMastHaveAParent" xml:space="preserve">
+    <value>Disregarded must have a parent</value>
+  </data>
+  <data name="InvalidBranchChild" xml:space="preserve">
+    <value>Branch cannot have any child</value>
+  </data>
+  <data name="InvalidBranchParent" xml:space="preserve">
+    <value>Branch can have only one parent</value>
+  </data>
+  <data name="InvalidDisregardedParent" xml:space="preserve">
+    <value>Disregarded can have only one parent</value>
+  </data>
+  <data name="InvalidLiquidatePercentage" xml:space="preserve">
+    <value>Receiving percentage not 100%</value>
+  </data>
+  <data name="InvalidOwnershipForDeletingEntity" xml:space="preserve">
+    <value>Deleting entity cannot be a parent or child of any entity</value>
+  </data>
+  <data name="InvalidPartnership" xml:space="preserve">
+    <value>Partnership must have minimum two parents</value>
+  </data>
+  <data name="InvalidRCTB" xml:space="preserve">
+    <value>RCTB must have minimum two parents</value>
+  </data>
+  <data name="InvalidThirdpartyOwnership" xml:space="preserve">
+    <value>Third-party entity cannot own 100%</value>
+  </data>
+  <data name="NewEntityMustHaveAParent" xml:space="preserve">
+    <value>New entity must have a parent</value>
+  </data>
+  <data name="OwnershipPercentageGeaterThan100" xml:space="preserve">
+    <value>The total holding percentage cannot be greater than 100</value>
+  </data>
+  <data name="OwnershipPercentageLessThan100" xml:space="preserve">
+    <value>The total holding percentage cannot be less than 100</value>
+  </data>
+  <data name="ThirdPartyCannotBeOwnedByOthers" xml:space="preserve">
+    <value>A third party cannot be owned by another entity</value>
+  </data>
+  <data name="SaveButtonCaption" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="OpenButtonCaption" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="ExportDocButtonCaption" xml:space="preserve">
+    <value>Export to Doc</value>
+  </data>
+  <data name="ExportPdfButtonCaption" xml:space="preserve">
+    <value>Export to PDF</value>
+  </data>
+  <data name="CustomColumnWindowTextForTaskAndRepository" xml:space="preserve">
+    <value>Please type your custom column name</value>
+  </data>
+  <data name="ExceptionLabel1Text1" xml:space="preserve">
+    <value>View technical data</value>
+  </data>
+  <data name="ExceptionLabel1Text2" xml:space="preserve">
+    <value>Hide technical data</value>
+  </data>
+  <data name="ExceptionLabel2Text1" xml:space="preserve">
+    <value>sent if you wish to report this problem</value>
+  </data>
+  <data name="ExceptionHeaderText" xml:space="preserve">
+    <value>Sorry, TME has encountered an error.</value>
+  </data>
+  <data name="ExceptionTitleText" xml:space="preserve">
+    <value>There was an error in TME, please help us fix it by reporting this to us.</value>
+  </data>
+  <data name="InvalidEmainAddressErrorToolTip" xml:space="preserve">
+    <value>Email address is not valid</value>
+  </data>
+  <data name="ExceptionLabel2Text2" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="ExceptionSendButtonTextCompact" xml:space="preserve">
+    <value>Send feedback</value>
+  </data>
+  <data name="ExceptionSendButtonTextNormal" xml:space="preserve">
+    <value>Report this problem</value>
+  </data>
+  <data name="SearchNoMatch" xml:space="preserve">
+    <value>No match</value>
+  </data>
+  <data name="InternetErrorDetail" xml:space="preserve">
+    <value>You are not connected to internet. Please connect to internet and try again.</value>
+  </data>
+  <data name="InternetErrorHeader" xml:space="preserve">
+    <value>Failed to connect to server</value>
+  </data>
+  <data name="InternetErrorTitle" xml:space="preserve">
+    <value>Internet connection problem</value>
+  </data>
+  <data name="MakeSameSizeToolTip" xml:space="preserve">
+    <value>Make Same Size</value>
+  </data>
+  <data name="PrinterErrorToolTip" xml:space="preserve">
+    <value>The Selected Printer Is In Error</value>
+  </data>
+  <data name="AlignLeftNodePlacerToolTip" xml:space="preserve">
+    <value>Align Left</value>
+  </data>
+  <data name="CenterNodePlacerToolTip" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="DoubleSideNodePlacerToolTip" xml:space="preserve">
+    <value>Double Side</value>
+  </data>
+  <data name="SingleTopNodePlacerToolTip" xml:space="preserve">
+    <value>Single Top</value>
+  </data>
+  <data name="DesignerPreferenceToolTip" xml:space="preserve">
+    <value>Edit Designer Preferences</value>
+  </data>
+  <data name="StaggerNodePlacerToolTip" xml:space="preserve">
+    <value>Stagger</value>
+  </data>
+  <data name="CurrentNodePlacerToolTip" xml:space="preserve">
+    <value>Apply layout style for children of selected parent.</value>
+  </data>
+  <data name="SelectNodePlacerToolTip" xml:space="preserve">
+    <value>Select layout style for children of selected parent.</value>
+  </data>
+  <data name="DoubleAlignLeftNodePlacerToolTip" xml:space="preserve">
+    <value>Double Align Left</value>
+  </data>
+  <data name="GeneratingPrintPreviewStatusMessage" xml:space="preserve">
+    <value>Generating Print Preview</value>
+  </data>
+  <data name="DesignerPreferenceTextStyleComment" xml:space="preserve">
+    <value>Text properties cannot be altered here</value>
+  </data>
+  <data name="SetAsDefaultButtonCaption" xml:space="preserve">
+    <value>Set as default</value>
+  </data>
+  <data name="ApplyToCurrentItems" xml:space="preserve">
+    <value>Apply to current items</value>
+  </data>
+  <data name="CalendarMonthViewEditorTitle" xml:space="preserve">
+    <value>Calendar Item</value>
+  </data>
+  <data name="OnlineRepositoryLinkTooltipPrefix" xml:space="preserve">
+    <value>&lt;Online Share&gt; </value>
+    <comment>TMEPlus -&gt; Organizer -&gt; Repository -&gt; Links -&gt; Tooltip will be shown with that prefix</comment>
+  </data>
+  <data name="SharepointServerNotFound" xml:space="preserve">
+    <value>Problem connecting to online share, TME will start without the collaboration feature now.</value>
+  </data>
+  <data name="SurveyEditorCloseConfirmMessage" xml:space="preserve">
+    <value>Are you sure you want to cancel the survey?</value>
+  </data>
+  <data name="SurveyEditorCloseConfirmTitle" xml:space="preserve">
+    <value>Cancel Survey</value>
+  </data>
+  <data name="ProtectedCellEditError" xml:space="preserve">
+    <value>The cell is not editable.</value>
+  </data>
+  <data name="HomeAdvanceCalculatorHeader" xml:space="preserve">
+    <value>WW Tax Calculator and Optimizer</value>
+  </data>
+  <data name="HomeAdvanceCalculatorText" xml:space="preserve">
+    <value>Calculate worldwide tax for current and future years and analyze repatriation and tax minimization strategies.</value>
+  </data>
+  <data name="HomeCollaborationHeader" xml:space="preserve">
+    <value>Collaboration</value>
+  </data>
+  <data name="HomeCollaborationText" xml:space="preserve">
+    <value>Organize and store documents online, automatically collect data from around the world and keep track of tax returns and other due dates. </value>
+  </data>
+  <data name="EntityLabelMode" xml:space="preserve">
+    <value>Show minimum information in the entity box to speed up the charting</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="SplitedNumberEditorAddItem" xml:space="preserve">
+    <value>+ Add Item</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="ApplyToAllCheckBoxCaption" xml:space="preserve">
+    <value>Apply to all entities</value>
+  </data>
+  <data name="EntityLabelConfiguratorDescription" xml:space="preserve">
+    <value>Use the space below to set what shows up in the entity boxes. Add data elements that automatically fill up for that entity by clicking "Insert Entity Data" (these connected fields are highlighted in yellow), or put in your own. By editing the fields below you can also arrange the way the data is shown along with its formatting. </value>
+  </data>
+  <data name="InsertKeywordButtonToolTip" xml:space="preserve">
+    <value>Insert Keyword</value>
+  </data>
+  <data name="TSSTLabelConfiguratorDescription" xml:space="preserve">
+    <value>Use the space below to set what shows up in the entity boxes. Add data elements that automatically fill up for that entity by clicking "Insert Entity Data" (these connected fields are highlighted in yellow), or put in your own. By editing the fields below you can also arrange the way the data is shown along with its formatting. </value>
+  </data>
+  <data name="SurveyTemplateDeleteConfirmMsg" xml:space="preserve">
+    <value>Survey Templete record will be deleted. To delete associated files and folders please delete from repository</value>
+  </data>
+  <data name="SurveyDeleteConfirmMsg" xml:space="preserve">
+    <value>Survey record will be deleted. To delete associated files and folders please delete from repository.</value>
+  </data>
+  <data name="SaveSurveyAsTemplateMessage" xml:space="preserve">
+    <value>Survey has saved as template.</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="DataSurveyContextMenuDeselectAllCells" xml:space="preserve">
+    <value>Deselect</value>
+  </data>
+  <data name="DataSurveyContextMenuSelectAllCells" xml:space="preserve">
+    <value>Select the entire sheet</value>
+  </data>
+  <data name="DataSurveyContextMenuSelectCells" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="DataSurveyMaxRowColumnExcededMessage" xml:space="preserve">
+    <value>Some of your selection is outside the valid range for the TME survey. TME supports $A$1:$Z$200.</value>
+  </data>
+  <data name="InvalidEmailAddressForAssignment" xml:space="preserve">
+    <value>Please provide valid email to assign. Each Email addreses must be valid and less than 255 characters</value>
+  </data>
+  <data name="InvalidEmailAddressOrCellsForAssignmen" xml:space="preserve">
+    <value>Please provide valid email to assign. Each Email addreses must be valid and less than 255 characters. Also Please select Excel cells.</value>
+  </data>
+  <data name="HiddenTransactionTitle" xml:space="preserve">
+    <value>Hidden Transaction(s)</value>
+  </data>
+  <data name="ShowingTransactionTitle" xml:space="preserve">
+    <value>Showing Transaction(s)</value>
+  </data>
+  <data name="ReservedComunNameErrorMessage" xml:space="preserve">
+    <value>Column name is reserved</value>
+  </data>
+  <data name="RefreshCalculatorScenerioConfirmationMessage" xml:space="preserve">
+    <value>The scenario hasn't been created with the current slide. Do you want to refresh with current slide?</value>
+  </data>
+  <data name="ImportEntityChartIntoCalculatorConfirmationMessage" xml:space="preserve">
+    <value>The scenario hasn't been created with the current slide. Do you still want to import entities from current slide?</value>
+  </data>
+  <data name="ImportTransactionsIntoCalculatorConfirmationMessage" xml:space="preserve">
+    <value>The scenario hasn't been created with the current slide. Do you still want to import transactions from current slide?</value>
+  </data>
+  <data name="FileOpeningFailedMessage" xml:space="preserve">
+    <value>The file does not exist, or has been deleted</value>
+  </data>
+  <data name="DataSurveyCancelSurveyButtonText" xml:space="preserve">
+    <value>Cancel Survey</value>
+  </data>
+  <data name="DataSurveyContinueSurveyButtonText" xml:space="preserve">
+    <value>Continue Survey</value>
+  </data>
+  <data name="AbortingMessage" xml:space="preserve">
+    <value>Aborting. Please wait...</value>
+  </data>
+  <data name="TaskExportWaitMsg" xml:space="preserve">
+    <value>Exporting spreadsheet please wait...</value>
+  </data>
+  <data name="ExportCommonWaitMsg" xml:space="preserve">
+    <value>Exporting spreadsheet please wait...</value>
+  </data>
+  <data name="ExportToExcelCommonDialogTitle" xml:space="preserve">
+    <value>Export to Excel</value>
+  </data>
+  <data name="TCInterCompanyPaymentLabel" xml:space="preserve">
+    <value>Assuming you can make an intercompany payment, select the payment stream and the receiving entity</value>
+  </data>
+  <data name="LayoutAllSlideMessage" xml:space="preserve">
+    <value>Layouting all slides to {0}</value>
+  </data>
+  <data name="LayoutAllSlideProgressTitle" xml:space="preserve">
+    <value>Layout Slides</value>
+  </data>
+  <data name="CSBookDefaultPageTitle" xml:space="preserve">
+    <value>CORPORATE STRUCTURE BOOK</value>
+  </data>
+  <data name="CSBookOpenSaveDialogTitle" xml:space="preserve">
+    <value>Create CS Book</value>
+  </data>
+  <data name="CSBookDefaultFileName" xml:space="preserve">
+    <value>Corporate Structure Book</value>
+  </data>
+  <data name="CSBookFilterStartString" xml:space="preserve">
+    <value>Generated CS Book</value>
+  </data>
+  <data name="SortSlidesToolTip" xml:space="preserve">
+    <value>Sort slides</value>
+  </data>
+</root>
