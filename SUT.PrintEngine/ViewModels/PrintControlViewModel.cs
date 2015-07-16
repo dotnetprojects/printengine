@@ -38,6 +38,14 @@ namespace SUT.PrintEngine.ViewModels
             }
         }
 
+        public static readonly DependencyProperty FitToPageProperty = DependencyProperty.Register("FitToPage", typeof(bool), typeof(PrintControlViewModel), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnPropertyChanged)));
+
+        public bool FitToPage
+        {
+            get { return (bool)GetValue(FitToPageProperty); }
+            set { SetValue(FitToPageProperty, value); }
+        }
+
         public static readonly DependencyProperty ScaleProperty = DependencyProperty.Register(
             "Scale",
             typeof(double),
@@ -64,6 +72,40 @@ namespace SUT.PrintEngine.ViewModels
             CancelScaleCommand = new DelegateCommand<object>(ExecuteCancelScale);
             PrintControlView.ResizeButtonVisibility(true);
             PrintControlView.SetPageNumberVisibility(Visibility.Visible);
+        }
+
+        private void FitToPage_Scale()
+        {
+            if (FitToPage)
+            {
+                double NewScale = 0;
+                int height, width;
+
+                if (PageOrientation == System.Printing.PageOrientation.Landscape)
+                {
+                    height = CurrentPaper.Width;
+                    width = CurrentPaper.Height;
+                }
+                else
+                {
+                    height = CurrentPaper.Height;
+                    width = CurrentPaper.Width;
+                }
+
+
+                if (this.DrawingVisual.ContentBounds.Width > width || this.DrawingVisual.ContentBounds.Height > height)
+                {
+                    double widthProportion = this.DrawingVisual.ContentBounds.Width / width;
+                    double heightProportion = this.DrawingVisual.ContentBounds.Height / height;
+
+                    if (widthProportion > heightProportion)
+                        NewScale = (width - 20.00) / this.DrawingVisual.ContentBounds.Width;
+                    else
+                        NewScale = (height - 20.00) / this.DrawingVisual.ContentBounds.Height;
+
+                    Scale = NewScale;
+                }
+            }
         }
 
         public void ExecuteResize(object parameter)
@@ -108,6 +150,9 @@ namespace SUT.PrintEngine.ViewModels
         {
             try
             {
+                FitToPage_Scale();
+                scale = Scale;
+                PrintControlView.ScalePreviewPaneVisibility(false);
                 ReloadingPreview = true;
                 ShowWaitScreen();
                 var printSize = GetPrintSize(paperSize, pageOrientation);
@@ -180,6 +225,10 @@ namespace SUT.PrintEngine.ViewModels
                         return;
                     ((IPrintControlView)presenter.View).ScalePreviewNode(new ScaleTransform(presenter.Scale, presenter.Scale));
                     presenter.ApproaxNumberOfPages = Convert.ToInt32(Math.Ceiling(presenter.NumberOfPages * presenter.Scale));
+                    break;
+
+                case "FitToPage":
+                    FitToPage_Scale();
                     break;
             }
             base.HandlePropertyChanged(o, e);

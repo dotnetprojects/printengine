@@ -148,6 +148,9 @@
                                                         <DropShadowBitmapEffect Noise="0.09" Color="#FF474242" ShadowDepth="2"/>
                                                     </Border.BitmapEffect>
                                                     <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                        <Grid Width="200" Background="White" Opacity="1" >
+                                                            <CheckBox x:Name="cb_FitToPage" IsChecked="{Binding Path=FitToPage}" HorizontalAlignment="Right" Content="Fit to page" FontFamily="Verdana" FontSize="10" FontWeight="Bold" Checked="cb_FitToPage_Check" Unchecked="cb_FitToPage_Check"/>
+                                                        </Grid>
                                                         <StackPanel Visibility="{Binding Path=ScaleSliderVisibility}" Orientation="Vertical" Width="200" Margin="0,5,0,5">
                                                             <Grid>
                                                                 <Grid.ColumnDefinitions>

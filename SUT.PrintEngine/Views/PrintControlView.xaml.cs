@@ -91,5 +91,13 @@ namespace SUT.PrintEngine.Views
             else
                 SetPanel.Visibility = Visibility.Collapsed;
         }
+
+        private void cb_FitToPage_Check(object sender, RoutedEventArgs e)
+        {
+            if (cb_FitToPage.IsChecked == true)
+                PageNumbersSlider.IsEnabled = false;
+            else
+                PageNumbersSlider.IsEnabled = true;
+        }
     }
 }
