@@ -36,7 +36,7 @@ namespace SUT.PrintEngine.ViewModels
         protected IWaitScreenViewModel WaitScreen { get; set; }
         protected IProgressDialogViewModel ProgressDialog { get; set; }
         public ICommand ChangePaperCommand { get; set; }
-        protected bool ScaleCanceling;
+        protected bool ScaleCanceling;        
 
         public double OldScale { get; set; }
 
@@ -410,7 +410,7 @@ namespace SUT.PrintEngine.ViewModels
         private bool IsPrintCopyCountChanged;
         private bool IsCurrentPaperChanged;
         private bool IsCurrentPrinterChanged;
-        private bool IsCurrentPrinterNameChanged;
+        private bool IsCurrentPrinterNameChanged;        
 
         #endregion
 
@@ -468,7 +468,7 @@ namespace SUT.PrintEngine.ViewModels
                                     presenter.IsCurrentPrinterChanged = true;
                                     presenter._oldPrintingOptions.CurrentPrinter = (PrintQueue)e.OldValue;
                                 }
-                                presenter.FetchSetting();
+                                presenter.FetchSetting();                                    
                                 presenter._newPrintingOptions.CurrentPrinter = (PrintQueue)e.NewValue;
                                 presenter.SetPrintError(false);
                             }
@@ -500,7 +500,7 @@ namespace SUT.PrintEngine.ViewModels
                     {
                         try
                         {
-                            presenter.FetchSetting();
+                            presenter.FetchSetting();                                
                             presenter.SetPrintError(false);
                         }
                         catch (Exception)
@@ -607,7 +607,13 @@ namespace SUT.PrintEngine.ViewModels
         protected virtual void ExecuteActualPageSizeCommand(object obj)
         {
             ShowAllPages = false;
-            ReloadPreview();
+            ReloadPreviewInternal();
+        }
+
+        private void ReloadPreviewInternal()
+        {
+            if (!Loading)
+                ReloadPreview();
         }
 
         public abstract void ReloadPreview();
@@ -671,7 +677,7 @@ namespace SUT.PrintEngine.ViewModels
         public virtual void ExecuteAllPages(object parameter)
         {
             ShowAllPages = true;
-            ReloadPreview();
+            ReloadPreviewInternal();
         }
 
         private void SetPageOrientation(PageOrientation? pageOrientation)
@@ -693,7 +699,7 @@ namespace SUT.PrintEngine.ViewModels
             var paperSize = PaperSizes.FirstOrDefault(p => p.Width == widthInInch && p.Height == heightInInch);
             if (paperSize != null)
                 CurrentPaper = PaperSizes[PaperSizes.IndexOf(paperSize)];
-        }
+        }        
 
         public void ExecuteSetPrintingOptions(object parameter)
         {
@@ -729,7 +735,7 @@ namespace SUT.PrintEngine.ViewModels
             PrintUtility.SaveUserPrintTicket(CurrentPrinter);
 
             ResetPrintingOptions();
-            ReloadPreview();
+            ReloadPreviewInternal();
         }
 
         public void ExecuteCancelPrintingOptions(object parameter)
@@ -786,7 +792,7 @@ namespace SUT.PrintEngine.ViewModels
 
         public virtual void ExecuteMarkPageNumbers(object parameter)
         {
-            ReloadPreview();
+            ReloadPreviewInternal();
         }
 
         public void ExecuteCancelPrint(object parameter)
@@ -904,9 +910,10 @@ namespace SUT.PrintEngine.ViewModels
         }
 
         private void LoadDocument()
-        {
+        {            
             ////TempFileLogger.Log("Starting Load Document");
-            _settingOptions = true;
+            _settingOptions = true;            
+
             ReloadPreview();
             Loading = false;
             IsSetPrintingOptionsEnabled = false;
@@ -990,7 +997,7 @@ namespace SUT.PrintEngine.ViewModels
         protected PrintControlView PrintControlView;
         protected bool ShowAllPages = true;
         private readonly PrinterPreferences _printerPreferences;
-        protected PrintUtility PrintUtility;
+        protected PrintUtility PrintUtility;        
 
         public void FetchSetting()
         {
@@ -1003,7 +1010,7 @@ namespace SUT.PrintEngine.ViewModels
             SetCurrentPaper(CurrentPrinter.UserPrintTicket.PageMediaSize);
             SetPageOrientation(CurrentPrinter.UserPrintTicket.PageOrientation);
             PrintCopyCount = CurrentPrinter.UserPrintTicket.CopyCount !=null? CurrentPrinter.UserPrintTicket.CopyCount.Value:PrintCopyCount;
-            ExecuteSetPrintingOptions(null);
+            ExecuteSetPrintingOptions(null);            
             HidePrintOptionCurtain();
         }
 
