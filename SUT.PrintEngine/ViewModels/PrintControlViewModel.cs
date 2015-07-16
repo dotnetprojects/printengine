@@ -5,7 +5,7 @@ using System.Printing;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using Microsoft.Practices.Composite.Presentation.Commands;
+using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Unity;
 using SUT.PrintEngine.Extensions;
 using SUT.PrintEngine.Paginators;

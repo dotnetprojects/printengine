@@ -14,8 +14,9 @@
 
 #region Using Directives
 
-using Microsoft.Practices.EnterpriseLibrary.Caching;
-using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Runtime.Caching;
 
 #endregion
 
@@ -29,7 +30,7 @@ namespace SUT.PrintEngine.Utils
     {
         #region Member Variables
 
-        private ICacheManager _cacheManager;
+        private MemoryCache _cacheManager;
 
         #endregion
 
@@ -46,9 +47,7 @@ namespace SUT.PrintEngine.Utils
         {
             if (null == _cacheManager)
             {
-                var fileSource = new FileConfigurationSource("SUT.PrintEngine.App.config");
-                var factory = new CacheManagerFactory(fileSource);
-                _cacheManager = factory.CreateDefault();
+                _cacheManager = new MemoryCache("SUT.PrintEngine");
             }
         }
 
@@ -60,7 +59,7 @@ namespace SUT.PrintEngine.Utils
         public void Add(string key, object data)
         {
             InitializeCacheManager();
-            _cacheManager.Add(key, data);
+            _cacheManager.Add(key, data, DateTimeOffset.MaxValue);
         }
 
         public bool Contains(string key)
@@ -72,13 +71,13 @@ namespace SUT.PrintEngine.Utils
         public void Flush()
         {
             InitializeCacheManager();
-            _cacheManager.Flush();
+            _cacheManager.Dispose();
         }
 
         public object GetData(string key)
         {
             InitializeCacheManager();
-            return _cacheManager.GetData(key);
+            return _cacheManager.Get(key);
         }
 
         public void Remove(string key)
@@ -87,12 +86,12 @@ namespace SUT.PrintEngine.Utils
             _cacheManager.Remove(key);
         }
 
-        public int Count
+        public long Count
         {
             get 
             {
                 InitializeCacheManager();
-                return _cacheManager.Count; 
+                return _cacheManager.GetCount(); 
             }
         }
 
@@ -102,6 +101,11 @@ namespace SUT.PrintEngine.Utils
             {
                 InitializeCacheManager();
                 return _cacheManager[key]; 
+            }
+            set
+            {
+                InitializeCacheManager();
+                _cacheManager[key] = value;
             }
         }
 

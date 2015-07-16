@@ -16,7 +16,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using Microsoft.Practices.Composite.Presentation.Commands;
+using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Unity;
 using SUT.PrintEngine.Controls.ProgressDialog;
 using SUT.PrintEngine.Controls.WaitScreen;

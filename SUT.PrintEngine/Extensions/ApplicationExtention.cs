@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
-using Microsoft.Practices.Composite.Events;
+using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Unity;
 
 namespace SUT.PrintEngine.Extensions
