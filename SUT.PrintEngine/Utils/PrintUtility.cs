@@ -185,5 +185,36 @@ namespace SUT.PrintEngine.Utils
             }            
         }
 
+        public string GetCurrentPrinterName(string defaultPrinterName = null)
+        {
+            try
+            {
+                if (!_cacheHelper.Contains("CurrentPrinterName") && !string.IsNullOrEmpty(defaultPrinterName))
+                {
+                    _cacheHelper.Add("CurrentPrinterName", defaultPrinterName);
+                }
+                var currentPrinterName = (string)_cacheHelper.GetData("CurrentPrinterName");
+                return currentPrinterName;
+            }
+            catch (Exception ex)
+            {
+                ////TempFileLogger.LogException(ex);
+                throw;
+            }
+        }
+
+        public void SetCurrentPrinterName(string currentPrinterName)
+        {
+            try
+            {
+                _cacheHelper["CurrentPrinterName"] = currentPrinterName;
+            }
+            catch (Exception ex)
+            {
+                ////TempFileLogger.LogException(ex);
+                throw;
+            } 
+        }
+
     }
 }

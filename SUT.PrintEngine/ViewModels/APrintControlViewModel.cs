@@ -462,14 +462,20 @@ namespace SUT.PrintEngine.ViewModels
                         {
                             presenter.PrintOptionsSetterIsEnable(true);
                             try
-                            {
+                            {                                
+                                var oldCurrentPrinter = (PrintQueue)e.OldValue;
+                                var newCurrentPrinter = (PrintQueue)e.NewValue;
+
                                 if (e.OldValue != null && !presenter.IsCurrentPrinterChanged)
                                 {
                                     presenter.IsCurrentPrinterChanged = true;
-                                    presenter._oldPrintingOptions.CurrentPrinter = (PrintQueue)e.OldValue;
+                                    presenter._oldPrintingOptions.CurrentPrinter = oldCurrentPrinter;                                    
                                 }
+
+                                presenter.PrintUtility.SetCurrentPrinterName(newCurrentPrinter.FullName);
+
                                 presenter.FetchSetting();                                    
-                                presenter._newPrintingOptions.CurrentPrinter = (PrintQueue)e.NewValue;
+                                presenter._newPrintingOptions.CurrentPrinter = newCurrentPrinter;
                                 presenter.SetPrintError(false);
                             }
                             catch (Exception)
@@ -484,9 +490,12 @@ namespace SUT.PrintEngine.ViewModels
                         if (e.OldValue != null && !presenter.IsCurrentPrinterNameChanged)
                         {
                             presenter.IsCurrentPrinterNameChanged = true;
-                            presenter._oldPrintingOptions.CurrentPrinterName = (string)e.OldValue;
+                            presenter._oldPrintingOptions.CurrentPrinterName = (string)e.OldValue;                            
                         }
-                        presenter._newPrintingOptions.CurrentPrinterName = (string)e.NewValue;
+
+                        presenter.PrintUtility.SetCurrentPrinterName((string)e.NewValue);
+
+                        presenter._newPrintingOptions.CurrentPrinterName = (string)e.NewValue;                        
                         break;
 
                 }
@@ -643,8 +652,8 @@ namespace SUT.PrintEngine.ViewModels
                     Printers = null;
                     Printers = temp;
                 }
-                CurrentPrinterName = defaultPrinterFullName;
-                CurrentPrinter = Printers.First(e => e.FullName == defaultPrinterFullName);
+                CurrentPrinterName = PrintUtility.GetCurrentPrinterName(defaultPrinterFullName);
+                CurrentPrinter = Printers.First(e => e.FullName == CurrentPrinterName);
                 PrintOptionsSetterIsEnable(false);
                 SetPrintError(false);
                 var userPrintTicket = PrintUtility.GetUserPrintTicket(CurrentPrinter.FullName);
@@ -1002,7 +1011,7 @@ namespace SUT.PrintEngine.ViewModels
         public virtual void FetchSetting()
         {
             ShowPrintOptionCurtain();
-            CurrentPrinterName = CurrentPrinter.FullName;
+            CurrentPrinterName = PrintUtility.GetCurrentPrinterName();            
             PaperSizes = PrintUtility.GetPaperSizes(CurrentPrinterName);
             var userPrintTicket = PrintUtility.GetUserPrintTicket(CurrentPrinter.FullName);
             if (userPrintTicket != null)
