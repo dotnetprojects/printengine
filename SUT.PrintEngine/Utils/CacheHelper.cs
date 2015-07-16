@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Runtime.Caching;
 
 #endregion
@@ -26,7 +27,7 @@ namespace SUT.PrintEngine.Utils
     /// This is a wrapper of Microsoft Patterns & Practices CachingManager class.
     /// Currently it has been configured only to cache in memory.
     /// </summary>
-    public class CacheHelper
+    public sealed class CacheHelper
     {
         #region Member Variables
 
@@ -34,63 +35,69 @@ namespace SUT.PrintEngine.Utils
 
         #endregion
 
-        #region Constructors
+        #region Constructor/ Singleton implementation
+
+        private static volatile CacheHelper instance;
+        private static object syncRoot = new Object();
+
+        private CacheHelper()
+        {
+            _cacheManager = new MemoryCache("SUT.PrintEngine");                
+        }
+
+        public static CacheHelper Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                            instance = new CacheHelper();
+                    }
+                }
+
+                return instance;
+            }
+        }
 
         #endregion
 
         #region Properties
         #endregion
 
-        #region Methods
-
-        private void InitializeCacheManager()
-        {
-            if (null == _cacheManager)
-            {
-                _cacheManager = new MemoryCache("SUT.PrintEngine");
-            }
-        }
-
-        #endregion
-
-
         #region CacheHelper Members
 
         public void Add(string key, object data)
-        {
-            InitializeCacheManager();
+        {            
             _cacheManager.Add(key, data, DateTimeOffset.MaxValue);
         }
 
         public bool Contains(string key)
         {
-            InitializeCacheManager();
             return _cacheManager.Contains(key);
         }
 
         public void Flush()
         {
-            InitializeCacheManager();
             _cacheManager.Dispose();
         }
 
         public object GetData(string key)
         {
-            InitializeCacheManager();
             return _cacheManager.Get(key);
         }
 
         public void Remove(string key)
         {
-            InitializeCacheManager();
             _cacheManager.Remove(key);
         }
 
         public long Count
         {
             get 
-            {
-                InitializeCacheManager();
+            {                
                 return _cacheManager.GetCount(); 
             }
         }
@@ -98,13 +105,11 @@ namespace SUT.PrintEngine.Utils
         public object this[string key]
         {
             get 
-            {
-                InitializeCacheManager();
+            {               
                 return _cacheManager[key]; 
             }
             set
             {
-                InitializeCacheManager();
                 _cacheManager[key] = value;
             }
         }

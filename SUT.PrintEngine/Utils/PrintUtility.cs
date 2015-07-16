@@ -13,7 +13,7 @@ namespace SUT.PrintEngine.Utils
 
         public PrintUtility()
         {
-            _cacheHelper = new CacheHelper();
+            _cacheHelper = CacheHelper.Instance;
         }
 
         public string GetSaveLocation(string printerFullName)
@@ -122,5 +122,68 @@ namespace SUT.PrintEngine.Utils
             currentPrinter.UserPrintTicket.SaveTo(outStream);
             outStream.Close();
         }
+
+        public double GetScale()
+        {
+            try
+            {
+                if (!_cacheHelper.Contains("Scale"))
+                {                    
+                    _cacheHelper.Add("Scale", 1.0);
+                }
+                var scale = (double)_cacheHelper.GetData("Scale");
+                return scale;
+            }
+            catch (Exception ex)
+            {
+                ////TempFileLogger.LogException(ex);
+                throw;
+            }
+        }
+
+        public void SetScale(double scale)
+        {
+            try
+            {                                  
+                    _cacheHelper["Scale"] = scale;
+            }
+            catch (Exception ex)
+            {
+                ////TempFileLogger.LogException(ex);
+                throw;
+            }            
+        }
+
+        public bool GetFitToPage()
+        {
+            try
+            {
+                if (!_cacheHelper.Contains("FitToPage"))
+                {
+                    _cacheHelper.Add("FitToPage", true);
+                }
+                var fitToPage = (bool)_cacheHelper.GetData("FitToPage");
+                return fitToPage;
+            }
+            catch (Exception ex)
+            {
+                ////TempFileLogger.LogException(ex);
+                throw;
+            }
+        }
+
+        public void SetFitToPage(bool fitToPage)
+        {
+            try
+            {
+                _cacheHelper["FitToPage"] = fitToPage;
+            }
+            catch (Exception ex)
+            {
+                ////TempFileLogger.LogException(ex);
+                throw;
+            }            
+        }
+
     }
 }

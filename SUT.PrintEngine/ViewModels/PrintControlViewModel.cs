@@ -72,6 +72,8 @@ namespace SUT.PrintEngine.ViewModels
             CancelScaleCommand = new DelegateCommand<object>(ExecuteCancelScale);
             PrintControlView.ResizeButtonVisibility(true);
             PrintControlView.SetPageNumberVisibility(Visibility.Visible);
+
+
         }
 
         private void FitToPage_Scale()
@@ -135,8 +137,8 @@ namespace SUT.PrintEngine.ViewModels
 
         private void ResetScale()
         {
-            OldScale = 1;
-            Scale = 1;
+            OldScale = PrintUtility.GetScale();
+            Scale = PrintUtility.GetScale();
             PrintControlView.ScalePreviewPaneVisibility(false);
         }
 
@@ -225,10 +227,12 @@ namespace SUT.PrintEngine.ViewModels
                         return;
                     ((IPrintControlView)presenter.View).ScalePreviewNode(new ScaleTransform(presenter.Scale, presenter.Scale));
                     presenter.ApproaxNumberOfPages = Convert.ToInt32(Math.Ceiling(presenter.NumberOfPages * presenter.Scale));
+                    PrintUtility.SetScale((double)e.NewValue);                    
                     break;
 
                 case "FitToPage":
                     FitToPage_Scale();
+                    PrintUtility.SetFitToPage((bool)e.NewValue);
                     break;
             }
             base.HandlePropertyChanged(o, e);
@@ -292,6 +296,12 @@ namespace SUT.PrintEngine.ViewModels
             return unityContainer.Resolve<IPrintControlViewModel>();
         }
 
-        
+        public override void FetchSetting()
+        {
+            base.FetchSetting();
+
+            Scale = PrintUtility.GetScale();
+            FitToPage = PrintUtility.GetFitToPage();
+        }
     }
 }

@@ -999,7 +999,7 @@ namespace SUT.PrintEngine.ViewModels
         private readonly PrinterPreferences _printerPreferences;
         protected PrintUtility PrintUtility;        
 
-        public void FetchSetting()
+        public virtual void FetchSetting()
         {
             ShowPrintOptionCurtain();
             CurrentPrinterName = CurrentPrinter.FullName;
