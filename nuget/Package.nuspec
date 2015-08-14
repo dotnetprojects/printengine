@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DotNetProjects.PrintEngine</id>
+    <version>$version$</version>
+    <authors>DotNetProjects</authors>
+    <owners>DotNetProjects</owners>
+    <licenseUrl>http://www.codeproject.com/info/cpol10.aspx</licenseUrl>
+    <projectUrl>https://github.com/jogibear9988/printengine</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Framework Assembly for DotNetProjects.PrintEngine</description>
+    <copyright>Copyright 2015</copyright>
+  </metadata>
+  <files>
+    <file src="..\DotNetProjects.PrintEngine\bin\Debug\DotNetProjects.PrintEngine.dll" target="lib\net40" />
+    <file src="..\DotNetProjects.PrintEngine\bin\Debug\DotNetProjects.PrintEngine.pdb" target="lib\net40" />
+  </files>
+</package>
