@@ -12,7 +12,7 @@
     <copyright>Copyright 2015</copyright>
   </metadata>
   <files>
-    <file src="..\DotNetProjects.PrintEngine\bin\Debug\DotNetProjects.PrintEngine.dll" target="lib\net40" />
-    <file src="..\DotNetProjects.PrintEngine\bin\Debug\DotNetProjects.PrintEngine.pdb" target="lib\net40" />
+    <file src="..\DotNetProjects.PrintEngine\bin\Debug\DotNetProjects.PrintEngine.dll" target="lib\net45" />
+    <file src="..\DotNetProjects.PrintEngine\bin\Debug\DotNetProjects.PrintEngine.pdb" target="lib\net45" />
   </files>
 </package>
