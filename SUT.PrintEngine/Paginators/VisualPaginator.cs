@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,12 +8,14 @@ using System.Windows.Documents;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Xps.Serialization;
 using SUT.PrintEngine.Utils;
 
 namespace SUT.PrintEngine.Paginators
 {
     public class VisualPaginator : DocumentPaginator
     {
+
         protected const string DrawingVisualNullMessage = "Drawing Visual Source is null";
         public int HorizontalPageCount;
 
@@ -85,7 +88,7 @@ namespace SUT.PrintEngine.Paginators
                     {
                         CreatePageVisual(pageBounds, DrawingVisual,
                                          IsFooterPage(horizontalPageNumber), dc);
-                    }
+                    }  
                     DrawingVisuals.Add(visual);
                 }
             }
@@ -126,6 +129,17 @@ namespace SUT.PrintEngine.Paginators
 
         public override DocumentPage GetPage(int pageNumber)
         {
+            //var ctl = new ContentControl();
+            //ctl.Content = this.DrawingVisual;
+            //ctl.RenderTransform = new TranslateTransform(-PageSize.Width * (pageNumber % GetHorizontalPageCount()), -PageSize.Height * (pageNumber / GetVerticalPageCount()));
+            //ctl.Measure(PageSize);
+            //ctl.Arrange(new Rect(new Point(0, 0), PageSize));
+
+            //var page = new DocumentPage(ctl);
+            //ctl.RenderTransform = null;
+
+            //return page;
+
             DrawingVisual pageVisual = GetPageVisual(pageNumber);
             var documentPage = new DocumentPage(pageVisual, PageSize, FrameRect, FrameRect);
             if (ShowPageMarkers)
@@ -225,11 +239,11 @@ namespace SUT.PrintEngine.Paginators
                 var fp = new FixedPage { ContentBox = FrameRect, BleedBox = FrameRect, Width = page.Size.Width, Height = page.Size.Height };
 
                 var vb = new DrawingBrush(DrawingVisuals[i].Drawing)
-                             {
-                                 Stretch = Stretch.Uniform,
-                                 ViewboxUnits = BrushMappingMode.Absolute,
-                                 Viewbox = new Rect(page.Size)
-                             };
+                {
+                    Stretch = Stretch.Uniform,
+                    ViewboxUnits = BrushMappingMode.Absolute,
+                    Viewbox = new Rect(page.Size)
+                };
                 var totalHorizontalMargin = _originalMargin.Left + _originalMargin.Right;
                 var toltalVerticalMargin = _originalMargin.Top + _originalMargin.Bottom;
                 var printablePageWidth = PageSize.Width - totalHorizontalMargin;
@@ -331,39 +345,39 @@ namespace SUT.PrintEngine.Paginators
             var txtBlockSlideNameWidth = (slideNameTextWidth > availableSlideNameWidth)
                                              ? availableSlideNameWidth
                                              : slideNameTextWidth;
-            var stackPanel = new StackPanel { Orientation = Orientation.Horizontal};
+            var stackPanel = new StackPanel { Orientation = Orientation.Horizontal };
             var txtBlockSlideName = new TextBlock
-                                        {
-                                            Text = slideName,
-                                            Width = Math.Max(0, txtBlockSlideNameWidth),
-                                            FontFamily = new FontFamily("Verdana"),
-                                            FontSize = 20,
-                                            TextTrimming = TextTrimming.CharacterEllipsis,
-                                            Padding = new Thickness(0),
-                                            Margin = new Thickness(0),
-                                            VerticalAlignment = VerticalAlignment.Bottom
-                                        };
+            {
+                Text = slideName,
+                Width = Math.Max(0, txtBlockSlideNameWidth),
+                FontFamily = new FontFamily("Verdana"),
+                FontSize = 20,
+                TextTrimming = TextTrimming.CharacterEllipsis,
+                Padding = new Thickness(0),
+                Margin = new Thickness(0),
+                VerticalAlignment = VerticalAlignment.Bottom
+            };
             var txtBlockPageNo = new TextBlock
-                                     {
-                                         Text = noOfTotal,
-                                         Width = pageNumberTextWidth,
-                                         FontFamily = new FontFamily("Verdana"),
-                                         FontSize = noOfTotalFontSize,
-                                         TextTrimming = TextTrimming.None,
-                                         VerticalAlignment = VerticalAlignment.Bottom,
-                                         Padding = new Thickness(0,0,0,2),
-                                         Margin = new Thickness(0)
-                                     };
+            {
+                Text = noOfTotal,
+                Width = pageNumberTextWidth,
+                FontFamily = new FontFamily("Verdana"),
+                FontSize = noOfTotalFontSize,
+                TextTrimming = TextTrimming.None,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                Padding = new Thickness(0, 0, 0, 2),
+                Margin = new Thickness(0)
+            };
             stackPanel.Children.Add(txtBlockSlideName);
             stackPanel.Children.Add(txtBlockPageNo);
             var label = new Label
-                            {
-                                Width = slideNameAvailableWidth,
-                                Content = stackPanel,
-                                HorizontalContentAlignment = HorizontalAlignment.Center,
-                                Padding = new Thickness(0),
-                                Margin = new Thickness(0)
-                            };
+            {
+                Width = slideNameAvailableWidth,
+                Content = stackPanel,
+                HorizontalContentAlignment = HorizontalAlignment.Center,
+                Padding = new Thickness(0),
+                Margin = new Thickness(0)
+            };
 
 
             FixedPage.SetLeft(label, Constants.CsBook.PageNumberTextLength);
@@ -389,7 +403,7 @@ namespace SUT.PrintEngine.Paginators
             drawingContext.PushTransform(new TranslateTransform(offsetX, offsetY + HeaderHeight));
             var pg = new Rect(new Point(pageBounds.X, pageBounds.Y), new Size(pageBounds.Width, pageBounds.Height));
             drawingContext.PushClip(new RectangleGeometry(pg));
-            drawingContext.PushOpacityMask(Brushes.White);
+            //drawingContext.PushOpacityMask(Brushes.White);
             drawingContext.DrawDrawing(source.Drawing);
         }
 
@@ -416,6 +430,7 @@ namespace SUT.PrintEngine.Paginators
             document.DocumentPaginator.PageSize = new Size(PageSize.Width, PageSize.Height);
             return document;
         }
+
     }
 
     public class PageEventArgs : EventArgs

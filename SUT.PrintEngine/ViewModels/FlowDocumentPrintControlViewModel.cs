@@ -5,7 +5,6 @@ using System.IO.Packaging;
 using System.Printing;
 using System.Windows.Documents;
 using System.Windows.Xps.Packaging;
-using Microsoft.Practices.Unity;
 using SUT.PrintEngine.Extensions;
 using SUT.PrintEngine.Views;
 
@@ -14,8 +13,8 @@ namespace SUT.PrintEngine.ViewModels
     public sealed class FlowDocumentPrintControlViewModel : APrintControlViewModel, IFlowDocumentPrintControlViewModel
     {
         public FlowDocument FlowDocument { get; set; }
-        public FlowDocumentPrintControlViewModel(PrintControlView view, IUnityContainer unityContainer)
-            : base(view, unityContainer)
+        public FlowDocumentPrintControlViewModel(PrintControlView view)
+            : base(view)
         {
 
         }

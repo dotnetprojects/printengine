@@ -3,7 +3,7 @@ using SUT.PrintEngine.Views;
 
 namespace SUT.PrintEngine.ViewModels
 {
-    public abstract class AViewModel:DependencyObject, IViewModel
+    public abstract class AViewModel : DependencyObject, IViewModel
     {
         protected AViewModel(IView view)
         {

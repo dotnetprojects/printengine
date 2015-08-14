@@ -15,9 +15,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using System.Windows.Threading;
-using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Unity;
+using System.Windows.Threading; 
 using SUT.PrintEngine.Controls.ProgressDialog;
 using SUT.PrintEngine.Controls.WaitScreen;
 using SUT.PrintEngine.Extensions;
@@ -32,7 +30,6 @@ namespace SUT.PrintEngine.ViewModels
     public abstract class APrintControlViewModel : AViewModel, IViewModel
     {
         protected DocumentPaginator Paginator;
-        protected IUnityContainer UnityContainer { get; set; }
         protected IWaitScreenViewModel WaitScreen { get; set; }
         protected IProgressDialogViewModel ProgressDialog { get; set; }
         public ICommand ChangePaperCommand { get; set; }
@@ -560,25 +557,24 @@ namespace SUT.PrintEngine.ViewModels
         public ICommand ActualPageSizeCommand { get; set; }
         #endregion
 
-        protected APrintControlViewModel(PrintControlView view, IUnityContainer unityContainer)
+        protected APrintControlViewModel(PrintControlView view)
             : base(view)
         {
             PrintControlView = view;
             PrintControlView.Loaded += PrintControlViewLoaded;
             _oldPrintingOptions = new PrintingOptions();
             _newPrintingOptions = new PrintingOptions();
-            UnityContainer = unityContainer;
-            WaitScreen = UnityContainer.Resolve<IWaitScreenViewModel>();
-            PrintUtility = unityContainer.Resolve<PrintUtility>();
-            CancelPrintCommand = new DelegateCommand<object>(ExecuteCancelPrint);
-            PrintDocumentCommand = new DelegateCommand<object>(ExecutePrint);
-            PageOrientationCommand = new DelegateCommand<object>(ExecutePageOrientation);
-            SetPrintingOptionsCommand = new DelegateCommand<object>(ExecuteSetPrintingOptions);
-            CancelPrintingOptionsCommand = new DelegateCommand<object>( ExecuteCancelPrintingOptions);
-            MarkPageNumbersCommand = new DelegateCommand<object>(ExecuteMarkPageNumbers);
-            AllPagesCommand = new DelegateCommand<object>(ExecuteAllPages);
-            ActualPageSizeCommand = new DelegateCommand<object>(ExecuteActualPageSizeCommand);
-            ChangePaperCommand = new DelegateCommand<object>(ExecuteChangePaper);
+            WaitScreen = new WaitScreenViewModel(new WaitScreenView());
+            PrintUtility = new PrintUtility();
+            CancelPrintCommand = new DelegateCommand(ExecuteCancelPrint);
+            PrintDocumentCommand = new DelegateCommand(ExecutePrint);
+            PageOrientationCommand = new DelegateCommand(ExecutePageOrientation);
+            SetPrintingOptionsCommand = new DelegateCommand(ExecuteSetPrintingOptions);
+            CancelPrintingOptionsCommand = new DelegateCommand( ExecuteCancelPrintingOptions);
+            MarkPageNumbersCommand = new DelegateCommand(ExecuteMarkPageNumbers);
+            AllPagesCommand = new DelegateCommand(ExecuteAllPages);
+            ActualPageSizeCommand = new DelegateCommand(ExecuteActualPageSizeCommand);
+            ChangePaperCommand = new DelegateCommand(ExecuteChangePaper);
 
         }
 
@@ -846,8 +842,8 @@ namespace SUT.PrintEngine.ViewModels
 
         public void ShowProgressDialog()
         {
-            ProgressDialog = UnityContainer.Resolve<IProgressDialogViewModel>();
-            var cancelAsyncPrintCommand = new DelegateCommand<object>(ExecuteCancelAsyncPrint);
+            ProgressDialog = new ProgressDialogViewModel(new ProgressDialogView());
+            var cancelAsyncPrintCommand = new DelegateCommand(ExecuteCancelAsyncPrint);
             ProgressDialog.CancelCommand = cancelAsyncPrintCommand;
             ProgressDialog.MaxProgressValue = ApproaxNumberOfPages;
             ProgressDialog.CurrentProgressValue = 0;

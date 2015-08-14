@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
-using Microsoft.Practices.Unity;
 using SUT.PrintEngine.Paginators;
 using SUT.PrintEngine.Utils;
 using SUT.PrintEngine.Views;
@@ -10,8 +9,8 @@ namespace SUT.PrintEngine.ViewModels
 {
     public class ItemsPrintControlViewModel : PrintControlViewModel, IItemsPrintControlViewModel
     {
-        public ItemsPrintControlViewModel(PrintControlView view, IUnityContainer unityContainer)
-            : base(view, unityContainer)
+        public ItemsPrintControlViewModel(PrintControlView view)
+            : base(view)
         {
         }
 

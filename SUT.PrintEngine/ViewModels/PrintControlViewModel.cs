@@ -5,8 +5,6 @@ using System.Printing;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Unity;
 using SUT.PrintEngine.Extensions;
 using SUT.PrintEngine.Paginators;
 using SUT.PrintEngine.Utils;
@@ -63,13 +61,13 @@ namespace SUT.PrintEngine.ViewModels
             ((PrintControlViewModel)d).HandlePropertyChanged(d, e);
         }
 
-        public PrintControlViewModel(PrintControlView view, IUnityContainer unityContainer)
-            : base(view, unityContainer)
+        public PrintControlViewModel(PrintControlView view)
+            : base(view)
         {
 
-            ResizeCommand = new DelegateCommand<object>(ExecuteResize);
-            ApplyScaleCommand = new DelegateCommand<object>(ExecuteApplyScale);
-            CancelScaleCommand = new DelegateCommand<object>(ExecuteCancelScale);
+            ResizeCommand = new DelegateCommand(ExecuteResize);
+            ApplyScaleCommand = new DelegateCommand(ExecuteApplyScale);
+            CancelScaleCommand = new DelegateCommand(ExecuteCancelScale);
             PrintControlView.ResizeButtonVisibility(true);
             PrintControlView.SetPageNumberVisibility(Visibility.Visible);
 
@@ -249,8 +247,9 @@ namespace SUT.PrintEngine.ViewModels
                 ((VisualPaginator)Paginator).PageCreated += PrintControlPresenterPageCreated;
                 printDialog.PrintDocument(Paginator, "");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
@@ -291,9 +290,7 @@ namespace SUT.PrintEngine.ViewModels
         
         public static IPrintControlViewModel Create()
         {
-            var unityContainer = new UnityContainer();
-            PrintEngineModule.Initialize(unityContainer);
-            return unityContainer.Resolve<IPrintControlViewModel>();
+            return new PrintControlViewModel(new PrintControlView());
         }
 
         public override void FetchSetting()

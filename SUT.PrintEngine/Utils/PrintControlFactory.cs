@@ -7,9 +7,9 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Microsoft.Practices.Unity;
 using SUT.PrintEngine.Extensions;
 using SUT.PrintEngine.ViewModels;
+using SUT.PrintEngine.Views;
 
 namespace SUT.PrintEngine.Utils
 {
@@ -17,9 +17,7 @@ namespace SUT.PrintEngine.Utils
     {
         public static IPrintControlViewModel Create(Size visualSize, Visual visual)
         {
-            var unityContainer = new UnityContainer();
-            PrintEngineModule.Initialize(unityContainer);
-            var printControlPresenter = (PrintControlViewModel)unityContainer.Resolve<IPrintControlViewModel>();
+            var printControlPresenter = new PrintControlViewModel(new PrintControlView());
 
             var drawingVisual = BuildGraphVisual(new PageMediaSize(visualSize.Width, visualSize.Height), visual);
             printControlPresenter.DrawingVisual = drawingVisual;
@@ -35,9 +33,7 @@ namespace SUT.PrintEngine.Utils
 
         public static IPrintControlViewModel Create(DataTable dataTable, List<double> columnWidths)
         {
-            var unityContainer = new UnityContainer();
-            PrintEngineModule.Initialize(unityContainer);
-            var printControlPresenter = (DataTablePrintControlViewModel)unityContainer.Resolve<IDataTablePrintControlViewModel>();
+            var printControlPresenter = new DataTablePrintControlViewModel(new PrintControlView());
             SetupDataTablePrintControlPresenter(dataTable, printControlPresenter, columnWidths, string.Empty);
             return printControlPresenter;
 
@@ -45,9 +41,7 @@ namespace SUT.PrintEngine.Utils
 
         public static IPrintControlViewModel Create(DataTable dataTable, List<double> columnWidths, string headerTemplate)
         {
-            var unityContainer = new UnityContainer();
-            PrintEngineModule.Initialize(unityContainer);
-            var printControlPresenter = (DataTablePrintControlViewModel)unityContainer.Resolve<IDataTablePrintControlViewModel>();
+            var printControlPresenter = new DataTablePrintControlViewModel(new PrintControlView());
             SetupDataTablePrintControlPresenter(dataTable, printControlPresenter, columnWidths, headerTemplate);
             return printControlPresenter;
 
