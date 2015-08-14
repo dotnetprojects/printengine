@@ -35,7 +35,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::SUT.PrintEngine.Properties.Resources.loading;
+            this.pictureBox1.Image = global::DotNetProjects.PrintEngine.Properties.Resources.loading;
             this.pictureBox1.Location = new System.Drawing.Point(41, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(59, 60);

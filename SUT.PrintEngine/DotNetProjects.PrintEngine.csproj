@@ -8,8 +8,8 @@
     <ProjectGuid>{0B3D76D5-D9F4-4C0E-AFA9-143138EBC74D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SUT.PrintEngine</RootNamespace>
-    <AssemblyName>SUT.PrintEngine</AssemblyName>
+    <RootNamespace>DotNetProjects.PrintEngine</RootNamespace>
+    <AssemblyName>DotNetProjects.PrintEngine</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Utf8Output>true</Utf8Output>
@@ -172,9 +172,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Images\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
