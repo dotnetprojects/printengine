@@ -4,8 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
-using SUT.PrintEngine.Extensions;
-using SUT.PrintEngine.Resources;
+using DotNetProjects.PrintEngine.Resources;
+using SUT.PrintEngine.Extensions;  
 using SUT.PrintEngine.ViewModels;
 
 namespace SUT.PrintEngine.Controls.WaitScreen

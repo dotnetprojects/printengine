@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using DotNetProjects.PrintEngine.Resources;
 using SUT.PrintEngine.Controls.WaitScreen;
-using SUT.PrintEngine.Resources;
 
 namespace SUT.PrintEngine.Controls.ProgressDialog
 {

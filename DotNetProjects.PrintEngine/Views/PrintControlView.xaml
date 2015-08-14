@@ -7,7 +7,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/SUT.PrintEngine;component/Resources/Themes/Generic/Theme.xaml"/>
+                <ResourceDictionary Source="/DotNetProjects.PrintEngine;component/Resources/Themes/Generic/Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         </ResourceDictionary>

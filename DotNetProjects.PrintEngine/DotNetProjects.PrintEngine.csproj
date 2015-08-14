@@ -168,6 +168,7 @@
     <EmbeddedResource Include="Resources\StringTable.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringTable1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
