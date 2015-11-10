@@ -46,18 +46,19 @@ namespace SUT.PrintEngine.ViewModels
                 FlowDocument.PageWidth = currentPaper.Height;
             }
 
-            _ms = new MemoryStream();
-            _pkg = Package.Open(_ms, FileMode.Create, FileAccess.ReadWrite);
-            const string pack = "pack://temp.xps";
-            var oldPackage = PackageStore.GetPackage(new Uri(pack));
-            if (oldPackage == null)
-                PackageStore.AddPackage(new Uri(pack), _pkg);
-            else
-            {
-                PackageStore.RemovePackage(new Uri(pack));
-                PackageStore.AddPackage(new Uri(pack), _pkg);
-            }
-            _xpsDocument = new XpsDocument(_pkg, CompressionOption.SuperFast, pack);
+	        var s = new FileStream("c:\\aa.xps", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+			_ms = new MemoryStream();
+            _pkg = Package.Open(s, FileMode.Create, FileAccess.ReadWrite);
+            //const string pack = "pack://temp.xps";
+            //var oldPackage = PackageStore.GetPackage(new Uri(pack));
+            //if (oldPackage == null)
+            //    PackageStore.AddPackage(new Uri(pack), _pkg);
+            //else
+            //{
+            //    PackageStore.RemovePackage(new Uri(pack));
+            //    PackageStore.AddPackage(new Uri(pack), _pkg);
+            //}
+            _xpsDocument = new XpsDocument(_pkg);//, CompressionOption.SuperFast, pack);
             var xpsWriter = XpsDocument.CreateXpsDocumentWriter(_xpsDocument);
 
             var documentPaginator = ((IDocumentPaginatorSource)FlowDocument).DocumentPaginator;

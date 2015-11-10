@@ -1,10 +1,14 @@
 using System;
 using System.Data;
 using System.Drawing.Printing;
+using System.IO;
+using System.IO.Packaging;
 using System.Printing;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Xps;
+using System.Windows.Xps.Packaging;
 using SUT.PrintEngine.Extensions;
 using SUT.PrintEngine.Paginators;
 using SUT.PrintEngine.Utils;
@@ -245,7 +249,7 @@ namespace SUT.PrintEngine.ViewModels
                 printDialog.PrintTicket = CurrentPrinter.UserPrintTicket;
                 ShowProgressDialog();
                 ((VisualPaginator)Paginator).PageCreated += PrintControlPresenterPageCreated;
-                printDialog.PrintDocument(Paginator, "");
+				printDialog.PrintDocument(Paginator, "");
             }
             catch (Exception ex)
             {
