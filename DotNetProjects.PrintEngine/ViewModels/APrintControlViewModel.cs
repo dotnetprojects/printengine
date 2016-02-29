@@ -886,7 +886,7 @@ namespace SUT.PrintEngine.ViewModels
             FullScreenPrintWindow = new Window();
             FullScreenPrintWindow.Activated += FullScreenPrintWindowActivated;
             FullScreenPrintWindow.Closing += FullScreenPrintWindowClosing;
-            FullScreenPrintWindow.Title = "Print Preview";
+            FullScreenPrintWindow.Title = "Предварительный просмотр";
             FullScreenPrintWindow.MinWidth = 600;
             FullScreenPrintWindow.MinHeight = 600;
             FullScreenPrintWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
