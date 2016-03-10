@@ -15,11 +15,11 @@ namespace SUT.PrintEngine.Utils
 {
     public class PrintControlFactory
     {
-        public static IPrintControlViewModel Create(Size visualSize, Visual visual)
+        public static IPrintControlViewModel Create(Size visualSize, Visual visual, FrameworkElement header = null)
         {
             var printControlPresenter = new PrintControlViewModel(new PrintControlView());
 
-            var drawingVisual = BuildGraphVisual(new PageMediaSize(visualSize.Width, visualSize.Height), visual);
+            var drawingVisual = BuildGraphVisual(new PageMediaSize(visualSize.Width, visualSize.Height), visual, header);
             printControlPresenter.DrawingVisual = drawingVisual;
 
             return printControlPresenter;
@@ -158,17 +158,35 @@ namespace SUT.PrintEngine.Utils
             return textBlock;
         }
 
-        public static DrawingVisual BuildGraphVisual(PageMediaSize pageSize, Visual visual)
+        public static DrawingVisual BuildGraphVisual(PageMediaSize pageSize, Visual visual, FrameworkElement header = null)
         {
             var drawingVisual = new DrawingVisual();
             using (var drawingContext = drawingVisual.RenderOpen())
             {
+                var headerHeight = 0.0;
+                if (header != null)
+                {
+                    UiUtil.UpdateSize(header, pageSize.Width.Value);
+                    headerHeight = header.ActualHeight;
+
+                    var headerRect = new Rect
+                    {
+                        X = 0,
+                        Y = 0,
+                        Width = pageSize.Width.Value,
+                        Height = header.ActualHeight,
+                    };
+                    var headerBrush = new VisualBrush(header) {Stretch = Stretch.None};
+
+                    drawingContext.DrawRectangle(headerBrush, null, headerRect);
+                    drawingContext.PushOpacityMask(Brushes.White);
+                }
 
                 var visualContent = visual;
                 var rect = new Rect
                 {
                     X = 0,
-                    Y = 0,
+                    Y = headerHeight,
                     Width = pageSize.Width.Value,
                     Height = pageSize.Height.Value
                 };
