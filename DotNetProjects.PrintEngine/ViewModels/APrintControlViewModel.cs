@@ -630,7 +630,7 @@ namespace SUT.PrintEngine.ViewModels
                 Printers = PrintUtility.GetPrinters();
                 SetLocalPrinter();
                 var defaultPrintQueue = PrintUtility.GetDefaultPrintQueue(string.Empty);
-                IsMarkPageNumbers = true;
+                IsMarkPageNumbers = false;
                 var defaultPrinterFullName = defaultPrintQueue.FullName;
                 var defaultExists = false;
                 foreach (var printer in Printers)
