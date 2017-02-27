@@ -191,7 +191,7 @@ namespace SUT.PrintEngine.Utils
                     Height = pageSize.Height.Value
                 };
 
-                var stretch = Stretch.None;
+                var stretch = Stretch.Uniform;
                 var visualBrush = new VisualBrush(visualContent) { Stretch = stretch };
 
                 drawingContext.DrawRectangle(visualBrush, null, rect);
