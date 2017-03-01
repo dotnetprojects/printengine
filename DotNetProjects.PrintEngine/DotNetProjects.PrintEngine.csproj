@@ -65,11 +65,6 @@
     </Compile>
     <Compile Include="Extensions\ApplicationExtention.cs" />
     <Compile Include="Paginators\DataTablePaginator.cs" />
-    <Compile Include="Resources\StringTable.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StringTable.resx</DependentUpon>
-    </Compile>
     <Compile Include="Utils\DelegateCommand.cs" />
     <Compile Include="Utils\UIUtil.cs" />
     <Compile Include="ViewModels\AViewModel.cs" />
@@ -87,6 +82,8 @@
     <Compile Include="ViewModels\IPrintControlViewModel.cs" />
     <Compile Include="Utils\DataTableUtil.cs" />
     <Compile Include="Utils\PrintControlFactory.cs" />
+    <Compile Include="ViewModels\PrintParametersViewModel.cs" />
+    <Compile Include="ViewModels\ScaleViewModel.cs" />
     <Compile Include="Views\IPrintControlView.xaml.cs" />
     <Compile Include="Paginators\DataGridPaginator.cs" />
     <Compile Include="ViewModels\GridPrintControlViewModel.cs" />
@@ -126,6 +123,12 @@
       <DependentUpon>WaitScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\XpsPrinterUtils.cs" />
+    <Compile Include="Views\PrintParametersView.xaml.cs">
+      <DependentUpon>PrintParametersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScaleView.xaml.cs">
+      <DependentUpon>ScaleView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Properties\DesignTimeResources.xaml" Condition="'$(DesignTime)'=='true' OR ('$(SolutionPath)'!='' AND Exists('$(SolutionPath)') AND '$(BuildingInsideVisualStudio)'!='true' AND '$(BuildingInsideExpressionBlend)'!='true')">
@@ -153,6 +156,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\PrintParametersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ScaleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controls\LoadScreen\loading.gif" />
@@ -164,11 +175,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\StringTable.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringTable1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

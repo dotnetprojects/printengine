@@ -32,12 +32,6 @@ namespace SUT.PrintEngine.Views
         }
         public void SetPageNumberVisibility(Visibility visibility)
         {
-            PageNumberMarker.Visibility = visibility;
-        }
-
-        public void SetPrintingOptionsWaitCurtainVisibility(Visibility visibility)
-        {
-            PrintingOptionsWaitCurtain.Visibility = visibility;
         }
 
         #endregion
@@ -74,30 +68,16 @@ namespace SUT.PrintEngine.Views
 
         public void PrintingOptionsWaitCurtainVisibility(bool isVisible)
         {
-            if (isVisible)
-                PrintingOptionsWaitCurtain.Visibility = Visibility.Visible;
-            else
-                PrintingOptionsWaitCurtain.Visibility = Visibility.Collapsed;
         }
         public void ScalePreviewNode(ScaleTransform scaleTransform)
         {
-            PreviewNode.LayoutTransform = scaleTransform;
+            var printControlViewModel = _viewModel as PrintControlViewModel;
+            if (printControlViewModel != null)
+                printControlViewModel.ScalePreviewLayout = scaleTransform;
         }
 
         internal void EnablePrintingOptionsSet(bool isEnabled)
         {
-            if (isEnabled)
-                SetPanel.Visibility = Visibility.Visible;
-            else
-                SetPanel.Visibility = Visibility.Collapsed;
-        }
-
-        private void cb_FitToPage_Check(object sender, RoutedEventArgs e)
-        {
-            if (cb_FitToPage.IsChecked == true)
-                PageNumbersSlider.IsEnabled = false;
-            else
-                PageNumbersSlider.IsEnabled = true;
         }
     }
 }

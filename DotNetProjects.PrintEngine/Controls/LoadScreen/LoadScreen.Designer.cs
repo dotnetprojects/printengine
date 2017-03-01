@@ -1,4 +1,6 @@
-﻿namespace SUT.PrintEngine.Controls.LoadScreen
+﻿using SUT.PrintEngine.Utils;
+
+namespace SUT.PrintEngine.Controls.LoadScreen
 {
     partial class LoadScreen
     {
@@ -51,7 +53,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(128, 24);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Please Wait ...";
+            this.label1.Text = $"{UiUtil.GetResourceString("PleaseWait", "Пожалуйста подождите")}...";
             // 
             // LoadScreen
             // 
