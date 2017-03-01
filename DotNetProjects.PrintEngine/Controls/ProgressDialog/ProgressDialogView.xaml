@@ -9,20 +9,25 @@
     Height="Auto"
     Background="Transparent">
     <UserControl.Resources>
-        <Style x:Key="{x:Type Thumb}" TargetType="{x:Type Thumb}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="2" Background="Transparent">
-                            <TextBlock Text="{TemplateBinding Tag}" Width="Auto" Foreground="Black" FontSize="13" FontFamily="Arial" FontWeight="Bold" Margin="5,0,0,0" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DotNetProjects.PrintEngine;component/Resources/Themes/Generic/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="{x:Type Thumb}" TargetType="{x:Type Thumb}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="2" Background="Transparent">
+                                <TextBlock Text="{TemplateBinding Tag}" Width="Auto" Foreground="Black" FontSize="13" FontFamily="Arial" FontWeight="Bold" Margin="5,0,0,0" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
     </UserControl.Resources>
     <StackPanel Orientation="Vertical" Width="Auto" Height="Auto">
-        <Border Background="White" BorderThickness="1" BorderBrush="Gray" Margin="12" CornerRadius="12" x:Name="Container">
+        <Border Background="White" BorderThickness="1" BorderBrush="Gray" Margin="12" CornerRadius="0" x:Name="Container">
             <Border.BitmapEffect>
                 <DropShadowBitmapEffect Color="Black" Direction="320"
                   ShadowDepth="2"
