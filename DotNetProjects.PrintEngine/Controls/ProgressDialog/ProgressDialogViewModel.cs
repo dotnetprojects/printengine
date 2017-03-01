@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-using DotNetProjects.PrintEngine.Resources;
 using SUT.PrintEngine.Controls.WaitScreen;
+using SUT.PrintEngine.Utils;
 
 namespace SUT.PrintEngine.Controls.ProgressDialog
 {
@@ -105,7 +105,7 @@ namespace SUT.PrintEngine.Controls.ProgressDialog
         {
             var percentage = Convert.ToInt32(CurrentProgressValue / MaxProgressValue * 100);
             //percentage = Math.Max(percentage, 100);
-            ProgressText = string.Format(ProgressTextFormat, percentage);
+            ProgressText = $"{percentage}% {UiUtil.GetResourceString("ExecutionFinished", "Завершено")}";
         }
 
         #endregion
@@ -119,19 +119,15 @@ namespace SUT.PrintEngine.Controls.ProgressDialog
         }
 
         public static readonly DependencyProperty ProgressTextProperty =
-            DependencyProperty.Register("ProgressText", typeof(string), typeof(ProgressDialogViewModel), new UIPropertyMetadata("0% Completed"));
-
-        private const string ProgressTextFormat = "{0}% Completed";
-
-
-
+            DependencyProperty.Register("ProgressText", typeof(string), typeof(ProgressDialogViewModel), new UIPropertyMetadata($"0% {UiUtil.GetResourceString("ExecutionFinished", "Завершено")}"));
+        
         public void Initialize(ICommand cancelCommand, int maxProgressValue)
         {
             MaxProgressValue = maxProgressValue;
             CurrentProgressValue = 0;            
             CancelCommand=cancelCommand;
-            CancelButtonCaption = StringTable.AbortButtonCaption;
-            Message = StringTable.WaitScreenMessage;
+            CancelButtonCaption = UiUtil.GetResourceString("Cancel", "Отмена");
+            Message = $"{UiUtil.GetResourceString("PleaseWait", "Пожалуйста подождите")}...";
             ////CancelCommand.RaiseCanExecuteChanged();
         }
     }

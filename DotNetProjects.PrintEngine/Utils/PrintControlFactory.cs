@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Printing;
 using System.Text;
+using System.Resources;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -15,11 +16,11 @@ namespace SUT.PrintEngine.Utils
 {
     public class PrintControlFactory
     {
-        public static IPrintControlViewModel Create(Size visualSize, Visual visual)
+        public static IPrintControlViewModel Create(Size visualSize, Visual visual, FrameworkElement header = null, Thickness margin = default(Thickness))
         {
             var printControlPresenter = new PrintControlViewModel(new PrintControlView());
 
-            var drawingVisual = BuildGraphVisual(new PageMediaSize(visualSize.Width, visualSize.Height), visual);
+            var drawingVisual = BuildGraphVisual(new PageMediaSize(visualSize.Width, visualSize.Height), visual, header, margin);
             printControlPresenter.DrawingVisual = drawingVisual;
 
             return printControlPresenter;
@@ -158,22 +159,40 @@ namespace SUT.PrintEngine.Utils
             return textBlock;
         }
 
-        public static DrawingVisual BuildGraphVisual(PageMediaSize pageSize, Visual visual)
+        public static DrawingVisual BuildGraphVisual(PageMediaSize pageSize, Visual visual, FrameworkElement header = null, Thickness margin = default(Thickness))
         {
             var drawingVisual = new DrawingVisual();
             using (var drawingContext = drawingVisual.RenderOpen())
             {
+                var headerHeight = 0.0;
+                if (header != null)
+                {
+                    UiUtil.UpdateSize(header, pageSize.Width.Value);
+                    headerHeight = header.ActualHeight;
+
+                    var headerRect = new Rect
+                    {
+                        X = margin.Left,
+                        Y = margin.Top,
+                        Width = pageSize.Width.Value,
+                        Height = header.ActualHeight,
+                    };
+                    var headerBrush = new VisualBrush(header) {Stretch = Stretch.None};
+
+                    drawingContext.DrawRectangle(headerBrush, null, headerRect);
+                    drawingContext.PushOpacityMask(Brushes.White);
+                }
 
                 var visualContent = visual;
                 var rect = new Rect
                 {
-                    X = 0,
-                    Y = 0,
+                    X = margin.Left,
+                    Y = headerHeight,
                     Width = pageSize.Width.Value,
                     Height = pageSize.Height.Value
                 };
 
-                var stretch = Stretch.None;
+                var stretch = Stretch.Uniform;
                 var visualBrush = new VisualBrush(visualContent) { Stretch = stretch };
 
                 drawingContext.DrawRectangle(visualBrush, null, rect);
