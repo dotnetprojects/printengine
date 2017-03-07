@@ -109,6 +109,7 @@ namespace SUT.PrintEngine.ViewModels
             ShowScaleCommand = new DelegateCommand(ExecuteShowScale);
             PrintControlView.ResizeButtonVisibility(true);
             PrintControlView.SetPageNumberVisibility(Visibility.Visible);
+            PrintControlView.ScaleButtonVisibility(true);
         }
 
         private void FitToPage_Scale()

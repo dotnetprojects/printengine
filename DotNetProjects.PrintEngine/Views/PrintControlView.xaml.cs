@@ -69,6 +69,12 @@ namespace SUT.PrintEngine.Views
         public void PrintingOptionsWaitCurtainVisibility(bool isVisible)
         {
         }
+
+        public void ScaleButtonVisibility(bool isVisible)
+        {
+            ScaleButton.Visibility = isVisible ? Visibility.Visible : Visibility.Hidden;
+        }
+
         public void ScalePreviewNode(ScaleTransform scaleTransform)
         {
             var printControlViewModel = _viewModel as PrintControlViewModel;
