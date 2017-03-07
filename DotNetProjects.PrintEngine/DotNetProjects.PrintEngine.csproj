@@ -65,10 +65,17 @@
     </Compile>
     <Compile Include="Extensions\ApplicationExtention.cs" />
     <Compile Include="Paginators\DataTablePaginator.cs" />
+    <Compile Include="Paginators\CustomGridDataPaginator.cs" />
+    <Compile Include="Utils\CustomGridData\CustomGridDataCell.cs" />
+    <Compile Include="Utils\CustomGridData\CustomGridDataColumn.cs" />
+    <Compile Include="Utils\CustomGridData\CustomGridDataHelper.cs" />
+    <Compile Include="Utils\CustomGridData\CustomGridDataRow.cs" />
     <Compile Include="Utils\DelegateCommand.cs" />
+    <Compile Include="Utils\CustomGridData\CustomGridDataTable.cs" />
     <Compile Include="Utils\UIUtil.cs" />
     <Compile Include="ViewModels\AViewModel.cs" />
     <Compile Include="ViewModels\APrintControlViewModel.cs" />
+    <Compile Include="ViewModels\CustomGridDataPrintContolViewModel.cs" />
     <Compile Include="ViewModels\DataTablePrintControlViewModel.cs" />
     <Compile Include="ViewModels\IDataTablePrintControlViewModel.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
