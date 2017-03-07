@@ -8,6 +8,7 @@ using System.Resources;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using DotNetProjects.PrintEngine.Utils;
 using SUT.PrintEngine.Extensions;
 using SUT.PrintEngine.ViewModels;
 using SUT.PrintEngine.Views;
@@ -40,6 +41,12 @@ namespace SUT.PrintEngine.Utils
 
         }
 
+        public static IPrintControlViewModel Create(CustomGridDataTable dataTable, string header)
+        {
+            var printControlPresenter = new CustomGridDataPrintContolViewModel(new PrintControlView(), dataTable, header);
+            return printControlPresenter;
+        }
+
         public static IPrintControlViewModel Create(DataTable dataTable, List<double> columnWidths, string headerTemplate)
         {
             var printControlPresenter = new DataTablePrintControlViewModel(new PrintControlView());
@@ -68,7 +75,7 @@ namespace SUT.PrintEngine.Utils
 
             var rowHeights = CalculateRowHeights(customVisualGrid);
 
-            var drawingVisual = CreateDrawingVisual(customVisualGrid, pageAccrossWidth, customVisualGrid.ActualHeight);
+            var drawingVisual = CreateDrawingVisual(customVisualGrid, pageAccrossWidth, customVisualGrid.ActualHeight, default(Thickness));
 
             var printTableDefination = new PrintTableDefination
             {
@@ -88,7 +95,7 @@ namespace SUT.PrintEngine.Utils
             return;
         }
 
-        private static List<double> CalculateRowHeights(Border border)
+        public static List<double> CalculateRowHeights(Border border)
         {
             var rowHeights = new List<double>();
             var sp = border.Child as StackPanel;
@@ -146,7 +153,7 @@ namespace SUT.PrintEngine.Utils
             return spBorder;
         }
 
-        protected static TextBlock CreateCellBlock(DataRow dataRow, DataColumn dataColumn, double columnWidth, Border tbBorder)
+        protected static TextBlock CreateCellBlock(DataRow printDataRow, DataColumn printDataColumn, double columnWidth, Border tbBorder)
         {
             var textBlock = new TextBlock
             {
@@ -155,7 +162,7 @@ namespace SUT.PrintEngine.Utils
                 TextWrapping = TextWrapping.Wrap,
                 Padding = new Thickness(5)
             };
-            textBlock.Text = dataRow[dataColumn].ToString();
+            textBlock.Text = printDataRow[printDataColumn].ToString();
             return textBlock;
         }
 
@@ -201,7 +208,7 @@ namespace SUT.PrintEngine.Utils
             return drawingVisual;
         }
 
-        public static DrawingVisual CreateDrawingVisual(FrameworkElement visual, double width, double height)
+        public static DrawingVisual CreateDrawingVisual(FrameworkElement visual, double width, double height, Thickness margin)
         {
             var drawingVisual = new DrawingVisual();
             using (var dc = drawingVisual.RenderOpen())
@@ -209,8 +216,8 @@ namespace SUT.PrintEngine.Utils
                 var vb = new VisualBrush(visual) { Stretch = Stretch.None };
                 var rectangle = new Rect
                 {
-                    X = 0,
-                    Y = 0,
+                    X = margin.Left,
+                    Y = margin.Top,
                     Width = width,
                     Height = height,
                 };
