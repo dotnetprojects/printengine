@@ -66,7 +66,6 @@
     <Compile Include="Extensions\ApplicationExtention.cs" />
     <Compile Include="Paginators\DataTablePaginator.cs" />
     <Compile Include="Paginators\CustomGridDataPaginator.cs" />
-    <Compile Include="Utils\CustomGridData\CustomGridDataCell.cs" />
     <Compile Include="Utils\CustomGridData\CustomGridDataColumn.cs" />
     <Compile Include="Utils\CustomGridData\CustomGridDataHelper.cs" />
     <Compile Include="Utils\CustomGridData\CustomGridDataRow.cs" />
