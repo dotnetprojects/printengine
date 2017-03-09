@@ -4,8 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
-using DotNetProjects.PrintEngine.Resources;
-using SUT.PrintEngine.Extensions;  
+using SUT.PrintEngine.Extensions;
+using SUT.PrintEngine.Utils;
 using SUT.PrintEngine.ViewModels;
 
 namespace SUT.PrintEngine.Controls.WaitScreen
@@ -123,7 +123,7 @@ namespace SUT.PrintEngine.Controls.WaitScreen
         private readonly Timer _hideTimer;
         public bool Show()
         {
-            return Show(StringTable.WaitScreenMessage, true);
+            return Show($"{UiUtil.GetResourceString("PleaseWait", "Пожалуйста подождите")}...", true);
         }
         public bool Show(string message)
         {

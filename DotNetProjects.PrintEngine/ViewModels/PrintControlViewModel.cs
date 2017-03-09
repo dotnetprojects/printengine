@@ -18,6 +18,8 @@ namespace SUT.PrintEngine.ViewModels
 {
     public class PrintControlViewModel : APrintControlViewModel, IPrintControlViewModel
     {
+        private ScaleViewModel _scaleViewModel;
+
         #region Commands
 
         public DrawingVisual DrawingVisual { get; set; }
@@ -25,7 +27,23 @@ namespace SUT.PrintEngine.ViewModels
         public ICommand ResizeCommand { get; set; }
         public ICommand ApplyScaleCommand { get; set; }
         public ICommand CancelScaleCommand { get; set; }
+
+        public ICommand ShowScaleCommand { get; set; }
+
+        public ICommand ShowPrintParametersCommand { get; set; }
         #endregion
+
+        public string LabelPrintParameters => UiUtil.GetResourceString("PrintParameters", "Параметры печати");
+
+        public string LabelCancel => UiUtil.GetResourceString("Cancel", "Отмена");
+
+        public string LabelPrint => UiUtil.GetResourceString("Print", "Печать");
+
+        public string LabelScaling => UiUtil.GetResourceString("Scaling", "Масштабирование");
+
+        public string LabelByThePageSize => UiUtil.GetResourceString("ByThePageSize", "По размеру страницы");
+
+        public string LabelScale100 => $"{UiUtil.GetResourceString("Scale", "Масштаб")} 100%";
 
         #region Dependency Properties
         public double Scale
@@ -48,6 +66,22 @@ namespace SUT.PrintEngine.ViewModels
             set { SetValue(FitToPageProperty, value); }
         }
 
+        public ScaleTransform ScalePreviewLayout
+        {
+            get
+            {
+                var scaleView = (ScaleView)_scaleViewModel?.View;
+                return scaleView?.PreviewNode.LayoutTransform as ScaleTransform;
+            }
+            set
+            {
+                if (_scaleViewModel == null)
+                    _scaleViewModel = new ScaleViewModel(new ScaleView(), this);
+
+                ((ScaleView)_scaleViewModel.View).PreviewNode.LayoutTransform = value;
+            }
+        }
+
         public static readonly DependencyProperty ScaleProperty = DependencyProperty.Register(
             "Scale",
             typeof(double),
@@ -68,14 +102,14 @@ namespace SUT.PrintEngine.ViewModels
         public PrintControlViewModel(PrintControlView view)
             : base(view)
         {
-
             ResizeCommand = new DelegateCommand(ExecuteResize);
             ApplyScaleCommand = new DelegateCommand(ExecuteApplyScale);
             CancelScaleCommand = new DelegateCommand(ExecuteCancelScale);
+            ShowPrintParametersCommand = new DelegateCommand(ExecuteShowPrintParameters);
+            ShowScaleCommand = new DelegateCommand(ExecuteShowScale);
             PrintControlView.ResizeButtonVisibility(true);
             PrintControlView.SetPageNumberVisibility(Visibility.Visible);
-
-
+            PrintControlView.ScaleButtonVisibility(true);
         }
 
         private void FitToPage_Scale()
@@ -116,7 +150,7 @@ namespace SUT.PrintEngine.ViewModels
         {
             PrintControlView.ScalePreviewPaneVisibility(true);
         }
-        private void ExecuteCancelScale(object parameter)
+        public void ExecuteCancelScale(object parameter)
         {
             ScaleCanceling = true;
             Scale = OldScale;
@@ -124,11 +158,30 @@ namespace SUT.PrintEngine.ViewModels
             ScaleCanceling = false;
         }
 
-        private void ExecuteApplyScale(object parameter)
+        public void ExecuteApplyScale(object parameter)
         {
             OldScale = Scale;
             PrintControlView.ScalePreviewPaneVisibility(false);
             ReloadPreview();
+        }
+
+        private void ExecuteShowPrintParameters(object parameter)
+        {
+            var view = new PrintParametersView();
+            if (PageOrientation == PageOrientation.Landscape)
+                view.Landscape.IsChecked = true;
+            else
+                view.Portrait.IsChecked = true;
+            var viewModel = new PrintParametersViewModel(view, this);
+            viewModel.Show();
+        }
+
+        private void ExecuteShowScale(object parameter)
+        {
+            var view = new ScaleView();
+            view.PreviewNode.LayoutTransform = ScalePreviewLayout;
+            _scaleViewModel = new ScaleViewModel(view, this);
+            _scaleViewModel.Show();
         }
 
         public override void InitializeProperties()
@@ -180,7 +233,6 @@ namespace SUT.PrintEngine.ViewModels
             {
                 WaitScreen.Hide();
             }
-
         }
 
         private DrawingVisual GetScaledVisual(double scale)
@@ -210,7 +262,7 @@ namespace SUT.PrintEngine.ViewModels
         {
             if (FullScreenPrintWindow != null)
             {
-                WaitScreen.Show("Loading...");
+                WaitScreen.Show($"{UiUtil.GetResourceString("Loading", "Загрузка")}...");
             }
         }
 

@@ -4,9 +4,11 @@ using System.Data;
 using System.Linq;
 using System.Printing;
 using System.Text;
+using System.Resources;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using DotNetProjects.PrintEngine.Utils;
 using SUT.PrintEngine.Extensions;
 using SUT.PrintEngine.ViewModels;
 using SUT.PrintEngine.Views;
@@ -15,11 +17,11 @@ namespace SUT.PrintEngine.Utils
 {
     public class PrintControlFactory
     {
-        public static IPrintControlViewModel Create(Size visualSize, Visual visual)
+        public static IPrintControlViewModel Create(Size visualSize, Visual visual, FrameworkElement header = null, Thickness margin = default(Thickness))
         {
             var printControlPresenter = new PrintControlViewModel(new PrintControlView());
 
-            var drawingVisual = BuildGraphVisual(new PageMediaSize(visualSize.Width, visualSize.Height), visual);
+            var drawingVisual = BuildGraphVisual(new PageMediaSize(visualSize.Width, visualSize.Height), visual, header, margin);
             printControlPresenter.DrawingVisual = drawingVisual;
 
             return printControlPresenter;
@@ -37,6 +39,12 @@ namespace SUT.PrintEngine.Utils
             SetupDataTablePrintControlPresenter(dataTable, printControlPresenter, columnWidths, string.Empty);
             return printControlPresenter;
 
+        }
+
+        public static IPrintControlViewModel Create(CustomGridDataTable dataTable, string header)
+        {
+            var printControlPresenter = new CustomGridDataPrintContolViewModel(new PrintControlView(), dataTable, header);
+            return printControlPresenter;
         }
 
         public static IPrintControlViewModel Create(DataTable dataTable, List<double> columnWidths, string headerTemplate)
@@ -67,7 +75,7 @@ namespace SUT.PrintEngine.Utils
 
             var rowHeights = CalculateRowHeights(customVisualGrid);
 
-            var drawingVisual = CreateDrawingVisual(customVisualGrid, pageAccrossWidth, customVisualGrid.ActualHeight);
+            var drawingVisual = CreateDrawingVisual(customVisualGrid, pageAccrossWidth, customVisualGrid.ActualHeight, default(Thickness));
 
             var printTableDefination = new PrintTableDefination
             {
@@ -87,7 +95,7 @@ namespace SUT.PrintEngine.Utils
             return;
         }
 
-        private static List<double> CalculateRowHeights(Border border)
+        public static List<double> CalculateRowHeights(Border border)
         {
             var rowHeights = new List<double>();
             var sp = border.Child as StackPanel;
@@ -145,7 +153,7 @@ namespace SUT.PrintEngine.Utils
             return spBorder;
         }
 
-        protected static TextBlock CreateCellBlock(DataRow dataRow, DataColumn dataColumn, double columnWidth, Border tbBorder)
+        protected static TextBlock CreateCellBlock(DataRow printDataRow, DataColumn printDataColumn, double columnWidth, Border tbBorder)
         {
             var textBlock = new TextBlock
             {
@@ -154,26 +162,44 @@ namespace SUT.PrintEngine.Utils
                 TextWrapping = TextWrapping.Wrap,
                 Padding = new Thickness(5)
             };
-            textBlock.Text = dataRow[dataColumn].ToString();
+            textBlock.Text = printDataRow[printDataColumn].ToString();
             return textBlock;
         }
 
-        public static DrawingVisual BuildGraphVisual(PageMediaSize pageSize, Visual visual)
+        public static DrawingVisual BuildGraphVisual(PageMediaSize pageSize, Visual visual, FrameworkElement header = null, Thickness margin = default(Thickness))
         {
             var drawingVisual = new DrawingVisual();
             using (var drawingContext = drawingVisual.RenderOpen())
             {
+                var headerHeight = 0.0;
+                if (header != null)
+                {
+                    UiUtil.UpdateSize(header, pageSize.Width.Value);
+                    headerHeight = header.ActualHeight;
+
+                    var headerRect = new Rect
+                    {
+                        X = margin.Left,
+                        Y = margin.Top,
+                        Width = pageSize.Width.Value,
+                        Height = header.ActualHeight,
+                    };
+                    var headerBrush = new VisualBrush(header) {Stretch = Stretch.None};
+
+                    drawingContext.DrawRectangle(headerBrush, null, headerRect);
+                    drawingContext.PushOpacityMask(Brushes.White);
+                }
 
                 var visualContent = visual;
                 var rect = new Rect
                 {
-                    X = 0,
-                    Y = 0,
+                    X = margin.Left,
+                    Y = headerHeight,
                     Width = pageSize.Width.Value,
                     Height = pageSize.Height.Value
                 };
 
-                var stretch = Stretch.None;
+                var stretch = Stretch.Uniform;
                 var visualBrush = new VisualBrush(visualContent) { Stretch = stretch };
 
                 drawingContext.DrawRectangle(visualBrush, null, rect);
@@ -182,7 +208,7 @@ namespace SUT.PrintEngine.Utils
             return drawingVisual;
         }
 
-        public static DrawingVisual CreateDrawingVisual(FrameworkElement visual, double width, double height)
+        public static DrawingVisual CreateDrawingVisual(FrameworkElement visual, double width, double height, Thickness margin)
         {
             var drawingVisual = new DrawingVisual();
             using (var dc = drawingVisual.RenderOpen())
@@ -190,8 +216,8 @@ namespace SUT.PrintEngine.Utils
                 var vb = new VisualBrush(visual) { Stretch = Stretch.None };
                 var rectangle = new Rect
                 {
-                    X = 0,
-                    Y = 0,
+                    X = margin.Left,
+                    Y = margin.Top,
                     Width = width,
                     Height = height,
                 };

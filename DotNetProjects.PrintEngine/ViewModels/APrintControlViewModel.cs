@@ -630,7 +630,7 @@ namespace SUT.PrintEngine.ViewModels
                 Printers = PrintUtility.GetPrinters();
                 SetLocalPrinter();
                 var defaultPrintQueue = PrintUtility.GetDefaultPrintQueue(string.Empty);
-                IsMarkPageNumbers = true;
+                IsMarkPageNumbers = false;
                 var defaultPrinterFullName = defaultPrintQueue.FullName;
                 var defaultExists = false;
                 foreach (var printer in Printers)
@@ -722,14 +722,6 @@ namespace SUT.PrintEngine.ViewModels
             if (IsPageOrientationChanged)
             {
                 PageOrientation = _newPrintingOptions.PageOrientation;
-                if (PageOrientation == PageOrientation.Portrait)
-                {
-                    ((PrintControlView)View).Portrait.IsChecked = true;
-                }
-                else
-                {
-                    ((PrintControlView)View).Landscape.IsChecked = true;
-                }
                 SetupPrintOrientation(PageOrientation);
             }
             if (IsCurrentPaperChanged)
@@ -753,10 +745,6 @@ namespace SUT.PrintEngine.ViewModels
             if (IsPageOrientationChanged)
             {
                 PageOrientation = _oldPrintingOptions.PageOrientation;
-                if (PageOrientation == PageOrientation.Portrait)
-                    ((PrintControlView)View).Portrait.IsChecked = true;
-                else
-                    ((PrintControlView)View).Landscape.IsChecked = true;
             }
             if (IsCurrentPrinterChanged)
             {
@@ -790,9 +778,6 @@ namespace SUT.PrintEngine.ViewModels
 
         private void PrintOptionsSetterIsEnable(bool isEnabled)
         {
-            ((PrintControlView)View).SetButton.Visibility = Visibility.Visible;
-            ((PrintControlView)View).SetButton.IsEnabled = isEnabled;
-            ((PrintControlView)View).CancelSetButton.IsEnabled = isEnabled;
         }
 
         public virtual void ExecuteMarkPageNumbers(object parameter)
@@ -848,8 +833,8 @@ namespace SUT.PrintEngine.ViewModels
             ProgressDialog.MaxProgressValue = ApproaxNumberOfPages;
             ProgressDialog.CurrentProgressValue = 0;
             ProgressDialog.Message = GetStatusMessage();
-            ProgressDialog.DialogTitle = "Printing...";
-            ProgressDialog.CancelButtonCaption = "Cancel";
+            ProgressDialog.DialogTitle = $"{UiUtil.GetResourceString("Printing", "Идет печать")}...";
+            ProgressDialog.CancelButtonCaption = UiUtil.GetResourceString("Cancel", "Отмена");
             SetProgressDialogCancelButtonVisibility();
             ProgressDialog.Show();
         }
@@ -886,7 +871,7 @@ namespace SUT.PrintEngine.ViewModels
             FullScreenPrintWindow = new Window();
             FullScreenPrintWindow.Activated += FullScreenPrintWindowActivated;
             FullScreenPrintWindow.Closing += FullScreenPrintWindowClosing;
-            FullScreenPrintWindow.Title = "Print Preview";
+            FullScreenPrintWindow.Title = "Предварительный просмотр";
             FullScreenPrintWindow.MinWidth = 600;
             FullScreenPrintWindow.MinHeight = 600;
             FullScreenPrintWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -1023,7 +1008,6 @@ namespace SUT.PrintEngine.ViewModels
 
         protected void PrintControlViewLoaded(object sender, RoutedEventArgs e)
         {
-            PrintControlView.SetPrintingOptionsWaitCurtainVisibility(Visibility.Collapsed);
             InitializeProperties();
             ResetPrintingOptions();
             LoadDocument();
